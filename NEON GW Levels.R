@@ -4,6 +4,7 @@ library(dplyr)
 library(reshape)
 library(ggpubr)
 
+
 setwd("~/Desktop/R_Scripts/Data/GWData/Raw/NEON_elev-groundwater/5_min_data")
 
 ##**** SUPER IMPORTANT the headers in all the fils need to be the same for this to work 
@@ -84,6 +85,9 @@ colnames(newTotal) <- c("Date_Time", "Well1","Well2","Well3","Well4",
 #Removes all values less than 0 from data frame
 newTotal[newTotal < 0] <- NA
 
+#Removes an erroneous data point
+newTotal[530,] <-NA
+
 # Hard-coded corrections for transducer error
 # On January 1,2018, the NEON data indicated an instant drop of ~6m
 # Given the stability of the data after Jan 1,2018, the data
@@ -91,21 +95,21 @@ newTotal[newTotal < 0] <- NA
 # Jan 1, 2018
 
 #Well1
-newTotal[1:122,2]<-newTotal[1:122,2]-6.18
+newTotal[1:483,2]<-newTotal[1:483,2]-6.18
 #Well2
-newTotal[1:122,3]<-newTotal[1:122,3]-6.11
+newTotal[1:483,3]<-newTotal[1:483,3]-6.11
 #Well3
-newTotal[1:122,4]<-newTotal[1:122,4]-7.35
+newTotal[1:483,4]<-newTotal[1:483,4]-7.35
 #Well4
-newTotal[1:122,5]<-newTotal[1:122,5]-6.74
+newTotal[1:483,5]<-newTotal[1:483,5]-6.74
 #Well5
-newTotal[1:122,6]<-newTotal[1:122,6]-6.31
+newTotal[1:483,6]<-newTotal[1:483,6]-6.31
 #Well6
-newTotal[1:122,7]<-newTotal[1:122,7]-5.93
+newTotal[1:483,7]<-newTotal[1:483,7]-5.93
 #Well7
-newTotal[1:122,8]<-newTotal[1:122,8]-5.13
+newTotal[1:483,8]<-newTotal[1:483,8]-5.13
 #Well8
-newTotal[1:122,9]<-newTotal[1:122,9]-5.721
+newTotal[1:483,9]<-newTotal[1:483,9]-5.721
 
 
 WLA.long <- melt(newTotal, id="Date_Time", measure=c("Well1","Well2","Well3","Well4","Well5","Well6","Well7","Well8"))
@@ -120,37 +124,62 @@ WLA.long<- cbind(WLA.long, list2)
 #Use these lines to plot a section of groundwater data just for sampling period
 #newTotal<- newTotal[-c(1:422),]
 
-P<- ggplot(WLA.long, aes(x=Date_Time, y=value, group=variable, color=list2))+
+GW<- ggplot(WLA.long, aes(x=factor(Date_Time), y=value, group=variable, color=list2))+
   geom_line(aes(y= value,linetype=WLA.long$variable), size=1)+
   theme_bw()+
   labs(x="Date", y="Water Level Elevations(m)", color="Bank Side", linetype="Well Number", legend.position='bottom')+
   ggtitle("NEON Well Water Elevations")+
   theme(legend.position = 'bottom')+
-  
+  theme(plot.title = element_text(hjust=0.5))+
   scale_color_manual(values = c(Ag="black",
                                 Pr="blue"))+
-  scale_linetype_manual(values=c(1,2,3,4,5,6,1,2))
+  scale_x_discrete(breaks=c('2016-09-01', '2017-01-01', '2017-07-01', '2018-01-01', '2018-07-01', '2019-01-01'),
+                     labels=c("2016-09", "2017-01", "2017-07", "2018-01", "2018-07", "2019-01"))
+  #scale_linetype_manual(values=c(1,2,3,4,5,6,1,2))
 #pdf("NEON Water Levels.pdf")
-print(P)
+print(GW)
 
 
 #This portion of code reads in stream flow data and adds to plot of GW
 
 setwd("~/Desktop/R_Scripts/Data/")
 QP <- read.csv("KonzaQP.csv")
+#Converting streamflow from cfs to m3/s
+QP$Streamflow <- QP$Streamflow * .028316846592
 QP$Date <-as.POSIXct(QP$Date,format="%m/%d/%y")
 QP$Date <- as.Date(QP$Date)
-DP <- ggplot(QP, aes(x=Date, y=QP$Streamflow))+
-  geom_line(aes(y=QP$Streamflow), size=1, color="red")+
+SW <- ggplot(QP, aes(x=Date, y=Streamflow))+
+  geom_line(aes(y=Streamflow), size=1, color="red")+
   theme_bw()+
-  labs(x="Date", y="Stream Discharge(cfs)")+
-  scale_y_continuous(sec.axis = sec_axis(~.+001, name="Daily Precipitation(mm)"))+
-  ggtitle("King's Creek Discharge vs Precipitation")+
-  geom_bar(stat="identity", aes(y=QP$Precipitation), fill="navy")
+  labs(x="Date", y="Stream Discharge(m3/s)")+
+  scale_y_continuous(trans='log10')+
+  ggtitle("King's Creek Discharge")+
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x = element_blank())+
+  theme(plot.title = element_text(hjust=0.5))
+  
+print(SW)
 
-Stream <-ggarrange(DP, P,
-                  labels=c("A","B"),
-                  ncol=1, nrow=2)
+P <- ggplot(QP, aes(x=Date, y=Streamflow))+
+  geom_bar(stat="identity", aes(y=QP$Precipitation), fill="navy",width=2)+
+  theme_bw()+
+  labs(y="Precipitation(mm)")+
+  ggtitle("King's Creek Precipitation")+
+  theme(plot.title = element_text(hjust=0.5))+
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x = element_blank())
+print(P)
+
+
+Stream <-ggarrange(P, SW, GW,
+                  heights = c(.25,.25,.5),
+                  ncol=1, nrow=3,
+                  common.legend = TRUE,
+                  
+                  legend='bottom')
 pdf("HydroGraph.pdf")
 print(Stream)
 dev.off()
+print(Stream)
