@@ -4,7 +4,7 @@ library(dplyr)
 library(reshape)
 library(ggpubr)
 
-setwd("~/Dropbox/EVRN 624 Files/Data/GWData/Raw/Neon_elev-groundwater/5_min_data")
+setwd("~/Desktop/R_Scripts/Data/GWData/Raw/NEON_elev-groundwater/5_min_data")
 
 ##**** SUPER IMPORTANT the headers in all the fils need to be the same for this to work 
 files1 = list.files(pattern=c(".301.","*.csv")) # hear what we are doing is make a list that contains all CSV files 
@@ -136,7 +136,7 @@ print(P)
 
 #This portion of code reads in stream flow data and adds to plot of GW
 
-setwd("~/Dropbox/EVRN 624 Files/Data/RCodes/Data")
+setwd("~/Desktop/R_Scripts/Data/")
 QP <- read.csv("KonzaQP.csv")
 QP$Date <-as.POSIXct(QP$Date,format="%m/%d/%y")
 QP$Date <- as.Date(QP$Date)
