@@ -148,37 +148,36 @@ QP <- read.csv("KonzaQP.csv")
 QP$Streamflow <- QP$Streamflow * .028316846592
 QP$Date <-as.POSIXct(QP$Date,format="%m/%d/%y")
 QP$Date <- as.Date(QP$Date)
-SW <- ggplot(QP, aes(x=Date, y=Streamflow))+
-  geom_line(aes(y=Streamflow), size=1, color="red")+
+
+SW <- ggplot(QP, aes(x=factor(Date), y=Streamflow))+
+  geom_line(aes(y=Streamflow, group=1), size=1, color="red")+
   theme_bw()+
-  labs(x="Date", y="Stream Discharge(m3/s)")+
+  labs(y="Discharge(m3/s)")+
   scale_y_continuous(trans='log10')+
   ggtitle("King's Creek Discharge")+
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x = element_blank())+
+  #theme(axis.title.x = element_blank())+
+  scale_x_discrete(breaks=c('2016-09-01', '2017-01-01', '2017-07-01', '2018-01-01', '2018-07-01', '2019-01-01'),
+                   labels=c("2016-09", "2017-01", "2017-07", "2018-01", "2018-07", "2019-01"))+
   theme(plot.title = element_text(hjust=0.5))
   
 print(SW)
 
-P <- ggplot(QP, aes(x=Date, y=Streamflow))+
+P <- ggplot(QP, aes(x=factor(Date), y=Streamflow))+
   geom_bar(stat="identity", aes(y=QP$Precipitation), fill="navy",width=2)+
   theme_bw()+
   labs(y="Precipitation(mm)")+
   ggtitle("King's Creek Precipitation")+
   theme(plot.title = element_text(hjust=0.5))+
-  theme(axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x = element_blank())
+  scale_x_discrete(breaks=c('2016-09-01', '2017-01-01', '2017-07-01', '2018-01-01', '2018-07-01', '2019-01-01'),
+                   labels=c("2016-09", "2017-01", "2017-07", "2018-01", "2018-07", "2019-01"))
 print(P)
 
 
 Stream <-ggarrange(P, SW, GW,
                   heights = c(.25,.25,.5),
                   ncol=1, nrow=3,
-                  common.legend = TRUE,
-                  
                   legend='bottom')
+print(Stream)
 pdf("HydroGraph.pdf")
 print(Stream)
 dev.off()
