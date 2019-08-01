@@ -14,9 +14,10 @@ DOA<-ggplot(master, aes(x=master$Month, y=master$DO
   theme_bw()+
   stat_summary(fun.y = mean, geom="line",color="red",size=1, aes(group=1))+
   stat_summary(fun.data = mean_se, geom="ribbon",fill="black", color="black")+
-  labs(y="Dissolved OxygMonth")+
+  labs(y="Dissolved Oxygen(%)")+
+  theme(plot.title = element_text(hjust=0.5))+
   ggtitle("Average DO Values")
-  
+
 #Plots the monthly mean(+sd) concentrations of Nitrate
 NO3A<-ggplot(master, aes(x=master$Month, y=master$NO3 
 ))+ 
@@ -24,6 +25,7 @@ NO3A<-ggplot(master, aes(x=master$Month, y=master$NO3
   stat_summary(fun.y = mean, geom="line",color="red",size=1, aes(group=1))+
   stat_summary(fun.data = mean_se, geom="ribbon",fill="black", color="black")+
   labs(y="[NO3] (mg/L)", color="Bank Side", shape="Well Number")+
+    theme(plot.title = element_text(hjust=0.5))+
   ggtitle("Average NO3 Concentrations")
 
 #Plots the monthly mean(+sd) concentrations of Sulfate
@@ -33,6 +35,7 @@ SO4A<-ggplot(master, aes(x=master$Month, y=master$SO4
   stat_summary(fun.y = mean, geom="line",color="red",size=1, aes(group=1))+
   stat_summary(fun.data = mean_se, geom="ribbon",fill="black", color="black")+
   labs(y="[SO4] (mg/L)", color="Bank Side", shape="Well Number")+
+    theme(plot.title = element_text(hjust=0.5))+
   ggtitle("Average SO4 Concentrations")
 
 
@@ -43,6 +46,7 @@ ClA<-ggplot(master, aes(x=master$Month, y=master$Cl
   stat_summary(fun.y = mean, geom="line",color="red",size=1, aes(group=1))+
   stat_summary(fun.data = mean_se, geom="ribbon",fill="black", color="black")+
   labs(y="[Cl] (mg/L)", color="Bank Side", shape="Well Number")+
+    theme(plot.title = element_text(hjust=0.5))+
   ggtitle("Average Cl Concentrations")
 
 #Plots the monthly mean(+sd) water temperatures
@@ -52,6 +56,7 @@ TempA<-ggplot(master, aes(x=master$Month, y=master$Temperature
   stat_summary(fun.y = mean, geom="line",color="red",size=1, aes(group=1))+
   stat_summary(fun.data = mean_se, geom="ribbon",fill="black", color="black")+
   labs(y="Water Temperat="Month", color="Bank Side", shape="Well Number")+
+  theme(plot.title = element_text(hjust=0.5))+
   ggtitle("Average Water Temperatures")
 
 #Plots the monthly mean(+sd) pH values
@@ -61,6 +66,7 @@ pHA<-ggplot(master, aes(x=master$Month, y=master$pH
   stat_summary(fun.y = mean, geom="line",color="red",size=1, aes(group=1))+
   stat_summary(fun.data = mean_se, geom="ribbon",fill="black", color="black")+
   labs(y="Well Water pH", color="Bank Side", shape="Well Number")+
+  theme(plot.title = element_text(hjust=0.5))+
   ggtitle("Average pH Values")
 
 #Plots the monthly mean(+sd) specific conductivity values
@@ -70,6 +76,7 @@ SPCA<-ggplot(master, aes(x=master$Month, y=master$Conductivity
   stat_summary(fun.y = mean, geom="line",color="red",size=1, aes(group=1))+
   stat_summary(fun.data = mean_se, geom="ribbon",fill="black", color="black")+
   labs(y="Specific Conducm)", x="Month", color="Bank Side", shape="Well Number")+
+  theme(plot.title = element_text(hjust=0.5))+
   ggtitle("Average SPC Values")
 
 #Plots the monthly mean(+sd) alkalinity concentrations
@@ -79,6 +86,7 @@ AlkA<-ggplot(master, aes(x=master$Month, y=master$Alkalinity
   stat_summary(fun.y = mean, geom="line",color="red",size=1, aes(group=1))+
   stat_summary(fun.data = mean_se, geom="ribbon",fill="black", color="black")+
   labs(y="[HCO3] (mg/L)", color="Bank Side", shape="Well Number")+
+  theme(plot.title = element_text(hjust=0.5))+
   ggtitle("Average Water Alkalinity")
 
 #Plots the monthly mean(+sd) concentrations of Calcium
@@ -88,6 +96,7 @@ CaA<-ggplot(master, aes(x=master$Month, y=master$Ca
   stat_summary(fun.y = mean, geom="line",color="red",size=1, aes(group=1))+
   stat_summary(fun.data = mean_se, geom="ribbon",fill="black", color="black")+
   labs(y="[Ca] (mg/L)", color="Bank Side", shape="Well Number")+
+  theme(plot.title = element_text(hjust=0.5))+
   ggtitle("Average Ca Concentrations")
 
 #Plots the monthly mean(+sd) concentrations of Potassium
@@ -97,6 +106,7 @@ KA<-ggplot(master, aes(x=master$Month, y=master$K
   stat_summary(fun.y = mean, geom="line",color="red",size=1, aes(group=1))+
   stat_summary(fun.data = mean_se, geom="ribbon",fill="black", color="black")+
   labs(y="[K] (mg/L)", xolor="Bank Side", shape="Well Number")+
+  theme(plot.title = element_text(hjust=0.5))+
   ggtitle("Average K Concentrations")
 
 #Plots the monthly mean(+sd) concentrations of Magnesium
@@ -106,6 +116,7 @@ MgA<-ggplot(master, aes(x=master$Month, y=master$Mg
   stat_summary(fun.y = mean, geom="line",color="red",size=1, aes(group=1))+
   stat_summary(fun.data = mean_se, geom="ribbon",fill="black", color="black")+
   labs(y="[Ng] (mg/L)", color="Bank Side", shape="Well Number")+
+  theme(plot.title = element_text(hjust=0.5))+
   ggtitle("Average Mg Concentrations")
 
 #Plots the monthly mean(+sd) concentrations of Sodium
@@ -115,6 +126,7 @@ NaA<-ggplot(master, aes(x=master$Month, y=master$Na
   stat_summary(fun.y = mean, geom="line",color="red",size=1, aes(group=1))+
   stat_summary(fun.data = mean_se, geom="ribbon",fill="black", color="black")+
   labs(y="[Na] (mg/L)", color="Bank Side", shape="Well Number")+
+  theme(plot.title = element_text(hjust=0.5))+
   ggtitle("Average Na Concentrations")
 
 anion_average<- ggarrange(NO3A, SO4A, ClA, AlkA, 

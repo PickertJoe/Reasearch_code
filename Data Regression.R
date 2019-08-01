@@ -142,10 +142,6 @@ Cor_par<-round(cor(master[,c(5:8)], y=NULL,
 Cor_ion<-round(cor(master[,c(9:14,16:17)], y=NULL,
               use = "pairwise.complete.obs", method = "pearson"), 3)
 
-#Use this line for exporting PDFs of Pearson correlation matrices
-#pdf("filename.pdf", height=11, width=8.5)
-  #grid.table(data_frame_name)
-  #dev.off()
 
 #This section can be used to print summary statistic tables over time
 #And for individual wells
