@@ -25,7 +25,7 @@ NO3A<-ggplot(master, aes(x=master$Month, y=master$NO3
   theme_bw()+
   stat_summary(fun.y = mean, geom="line",color="red",size=1, aes(group=1))+
   stat_summary(fun.data = mean_se, geom="ribbon",fill="black", color="black")+
-  labs(y="[NO3] (mg/L)")+
+  labs(y="[NO3-N] (mg/L)")+
   theme(axis.title.x = element_blank())+
   theme(plot.title = element_text(hjust=0.5))+
   ggtitle("Average NO3 Concentrations")

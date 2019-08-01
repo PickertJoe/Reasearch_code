@@ -12,7 +12,9 @@ DO<-ggplot(master, aes(x=master$Month, y=master$DO,
   geom_point(aes(shape=master$Well))+
   theme_bw()+
   geom_line(size=.5)+
-  labs(y="Dissolved Oxygen (%)", x="Month", color="Bank Side", shape="Well Number")+
+  labs(y="Dissolved Oxygen (%)", color="Bank Side", shape="Well Number")+
+  theme(plot.title = element_text(hjust=0.5))+
+  theme(axis.title.x = element_blank())+
   ggtitle("NEON Well DO Values")+
   scale_color_manual(values = c(Ag="black",
                                 Pr="blue"
@@ -24,7 +26,9 @@ NO3<-ggplot(master, aes(x=master$Month, y=master$NO3,
   geom_point(aes( shape=master$Well))+
   theme_bw()+
   geom_line(size=.5)+
-  labs(y="[NO3-N] (mg/L)", x="Month", color="Bank Side", shape="Well Number")+
+  labs(y="[NO3-N] (mg/L)", color="Bank Side", shape="Well Number")+
+  theme(plot.title = element_text(hjust=0.5))+
+  theme(axis.title.x = element_blank())+
   ggtitle("NEON Well Nitrate Concentrations")+
   scale_color_manual(values = c(Ag="black",
                                 Pr="blue"
@@ -36,7 +40,9 @@ SO4<-ggplot(master, aes(x=master$Month, y=master$SO4,
   geom_point(aes(shape=master$Well))+
   theme_bw()+
   geom_line(size=.5)+
-  labs(y="[SO4] (mg/L)", x="Month", color="Bank Side", shape="Well Number")+
+  labs(y="[SO4] (mg/L)", color="Bank Side", shape="Well Number")+
+  theme(plot.title = element_text(hjust=0.5))+
+  theme(axis.title.x = element_blank())+
   ggtitle("NEON Well SO4 Concentrations")+
   scale_color_manual(values = c(Ag="black",
                                 Pr="blue"
@@ -48,7 +54,9 @@ Cl<-ggplot(master, aes(x=master$Month, y=master$Cl,
   geom_point(aes(shape=master$Well))+
   theme_bw()+
   geom_line(size=.5)+
-  labs(y="[Cl] (mg/L)", x="Month", color="Bank Side", shape="Well Number")+
+  labs(y="[Cl] (mg/L)", color="Bank Side", shape="Well Number")+
+  theme(plot.title = element_text(hjust=0.5))+
+  theme(axis.title.x = element_blank())+
   ggtitle("NEON Well Chloride Concentrations")+
   scale_color_manual(values = c(Ag="black",
                                 Pr="blue"
@@ -60,7 +68,9 @@ Temp<-ggplot(master, aes(x=master$Month, y=master$Temperature,
   geom_point(aes(shape=master$Well))+
   theme_bw()+
   geom_line(size=.5)+
-  labs(y="Water Temperature (C)", x="Month", color="Bank Side", shape="Well Number")+
+  labs(y="Water Temperature (C)", color="Bank Side", shape="Well Number")+
+  theme(plot.title = element_text(hjust=0.5))+
+  theme(axis.title.x = element_blank())+
   ggtitle("NEON Well Water Temperatures")+
   scale_color_manual(values = c(Ag="black",
                                 Pr="blue"
@@ -72,7 +82,9 @@ pH<-ggplot(master, aes(x=master$Month, y=master$pH,
   geom_point(aes(shape=master$Well))+
   theme_bw()+
   geom_line(size=.5)+
-  labs(y="Water pH", x="Month", color="Bank Side", shape="Well Number")+
+  labs(y="Water pH", color="Bank Side", shape="Well Number")+
+  theme(plot.title = element_text(hjust=0.5))+
+  theme(axis.title.x = element_blank())+
   ggtitle("NEON Well pH Values")+
   scale_color_manual(values = c(Ag="black",
                                 Pr="blue"
@@ -84,7 +96,9 @@ SPC<-ggplot(master, aes(x=master$Month, y=master$Conductivity,
   geom_point(aes(shape=master$Well))+
   theme_bw()+
   geom_line(size=.5)+
-  labs(y="Specific Conductance (us/cm)", x="Month", color="Bank Side", shape="Well Number")+
+  labs(y="Specific Conductance (us/cm)", color="Bank Side", shape="Well Number")+
+  theme(plot.title = element_text(hjust=0.5))+
+  theme(axis.title.x = element_blank())+
   ggtitle("NEON Well SPC Values")+
   scale_color_manual(values = c(Ag="black",
                                 Pr="blue"
@@ -96,7 +110,9 @@ Alk<-ggplot(master, aes(x=master$Month, y=master$Alkalinity,
   geom_point(aes(shape=master$Well))+
   theme_bw()+
   geom_line(size=.5)+
-  labs(y="Alkalinity (mgCO3/L)", x="Month", color="Bank Side", shape="Well Number")+
+  labs(y="Alkalinity (mgCO3/L)", color="Bank Side", shape="Well Number")+
+  theme(plot.title = element_text(hjust=0.5))+
+  theme(axis.title.x = element_blank())+
   ggtitle("NEON Well Alkalinity")+
   scale_color_manual(values = c(Ag="black",
                                 Pr="blue"
@@ -108,7 +124,9 @@ Ca<-ggplot(master, aes(x=master$Month, y=master$Ca,
   geom_point(aes(shape=master$Well))+
   theme_bw()+
   geom_line(size=.5)+
-  labs(y="[Ca] (mg/L)", x="Month", color="Bank Side", shape="Well Number")+
+  labs(y="[Ca] (mg/L)", color="Bank Side", shape="Well Number")+
+  theme(plot.title = element_text(hjust=0.5))+
+  theme(axis.title.x = element_blank())+
   ggtitle("NEON Well Calcium Concentrations")+
   scale_color_manual(values = c(Ag="black",
                                 Pr="blue"
@@ -120,7 +138,9 @@ K<-ggplot(master, aes(x=master$Month, y=master$K,
   geom_point(aes(shape=master$Well))+
   theme_bw()+
   geom_line(size=.5)+
-  labs(y="[K] (mg/L)", x="Month", color="Bank Side", shape="Well Number")+
+  labs(y="[K] (mg/L)", color="Bank Side", shape="Well Number")+
+  theme(plot.title = element_text(hjust=0.5))+
+  theme(axis.title.x = element_blank())+
   ggtitle("NEON Well Potassium Concentrations")+
   scale_color_manual(values = c(Ag="black",
                                 Pr="blue"
@@ -133,7 +153,9 @@ Mg<-ggplot(master, aes(x=master$Month, y=master$Mg,
   geom_point(aes(shape=master$Well))+
   theme_bw()+
   geom_line(size=.5)+
-  labs(y="[Mg] (mg/L)", x="Month", color="Bank Side", shape="Well Number")+
+  labs(y="[Mg] (mg/L)", color="Bank Side", shape="Well Number")+
+  theme(plot.title = element_text(hjust=0.5))+
+  theme(axis.title.x = element_blank())+
   ggtitle("NEON Well Magensium Concentrations")+
   scale_color_manual(values = c(Ag="black",
                                 Pr="blue"
@@ -145,7 +167,9 @@ Na<-ggplot(master, aes(x=master$Month, y=master$Na,
   geom_point(aes(shape=master$Well))+
   theme_bw()+
   geom_line(size=.5)+
-  labs(y="[Na] (mg/L)", x="Month", color="Bank Side", shape="Well Number")+
+  labs(y="[Na] (mg/L)", color="Bank Side", shape="Well Number")+
+  theme(plot.title = element_text(hjust=0.5))+
+  theme(axis.title.x = element_blank())+
   ggtitle("NEON Well Sodium Concentrations")+
   scale_color_manual(values = c(Ag="black",
                                 Pr="blue"
