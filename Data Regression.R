@@ -3,7 +3,7 @@ library(ggplot2)
 library(ggpubr)
 library(cowplot)
 library(gridExtra)
-setwd("~/Dropbox/EVRN 624 Files/Data/Rcodes/Data")
+setwd("~/Desktop/R_Scripts/Data")
 master <- read.csv("MasterData.csv")
 
 #Below was my first attempt to plot using standard function
@@ -17,6 +17,7 @@ master <- read.csv("MasterData.csv")
 #I plan on turning this into a for loop to reduce the lines of code
 
 wellname <- as.factor(master[,2])
+
 NS<-ggplot(master, aes(x=master$NO3, y=master$SO4, color=wellname))+ 
       geom_point(size=2)+
       theme_bw()+
@@ -138,7 +139,7 @@ Regplot<- ggarrange(NS, NC, NAlk, NCond, NDO, Np,
 Cor_par<-round(cor(master[,c(5:8)], y=NULL,
              use = "pairwise.complete.obs", method = "pearson"), 3)
 
-Cor_ion<-round(cor(master[,c(9:12)], y=NULL,
+Cor_ion<-round(cor(master[,c(9:14,16:17)], y=NULL,
               use = "pairwise.complete.obs", method = "pearson"), 3)
 
 #Use this line for exporting PDFs of Pearson correlation matrices
@@ -155,14 +156,18 @@ summaryionyear[,3:6] <- NULL
 summarywell <-read.csv("SummaryW.csv")
 bankpar <- read.csv("SummaryB.csv")
 
-#Run these lines to print graphs to the desktop
-setwd("~/Desktop")
+#Run these lines to print graphs to the folder
+setwd("~/Desktop/R_Scripts")
 pdf("Parameter summary.pdf", height=11, width=8.5)
 grid.table(summaryparyear, rows=NULL)
 dev.off()
 
 pdf("Ion summary.pdf", height=11, width=8.5)
-grid.table(Cor_ion, rows=NULL)
+grid.table(Cor_ion)
+dev.off()
+
+pdf("Field Parameter Correlations.pdf", height=11, width = 8.5)
+grid.table(Cor_par)
 dev.off()
 
 pdf("Well summary.pdf", height=11, width=8.5)
