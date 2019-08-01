@@ -3,18 +3,9 @@ library(ggplot2)
 library(ggpubr)
 library(cowplot)
 
-setwd("~/Dropbox/EVRN 624 Files/Data/Rcodes/Data")
+setwd("~/Desktop/R_Scripts/Data")
 master <- read.csv("MasterData.csv")
 master$Month = factor(master$Month, levels=c("Nov","Dec","Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"))
-##Below is the original color scheme
-##c(Well1="black",
-  #Well2="dodgerblue4",
- # Well3="cyan1",
-  #Well4="forestgreen",
-  #Well5="darkmagenta",
-  #Well6="red1",
-  #Well7="deeppink1",
-  #Well8="darkgoldenrod4"))
 
 DO<-ggplot(master, aes(x=master$Month, y=master$DO, 
   group=master$Well, color=master$Bank))+ 
@@ -165,16 +156,27 @@ Na<-ggplot(master, aes(x=master$Month, y=master$Na,
 #cations, and field parameters
 
 anions<- ggarrange(NO3, SO4, Cl, Alk, 
-          labels= c("A", "B", "C", "D"),
           common.legend = TRUE, legend="bottom",
           ncol=2, nrow=2)
 
 cations<- ggarrange(Ca, K, Mg, Na, 
-                   labels= c("A", "B", "C", "D"),
                    common.legend = TRUE, legend="bottom",
                    ncol=2, nrow=2)
 
 fieldpar<- ggarrange(DO, pH, SPC,
-          labels= c("A", "B", "C"),
           common.legend = TRUE, legend="bottom",
           ncol=2, nrow=2)
+
+#This section will save the figure arrays as pdf files
+setwd("~/Desktop/R_Scripts/Figures")
+pdf("Anion_Summary.pdf")
+print(anions)
+dev.off()
+
+pdf("Cation_Summary.pdf")
+print(cations)
+dev.off()
+
+pdf("Parameter_Summary.pdf")
+print(fieldpar)
+dev.off()

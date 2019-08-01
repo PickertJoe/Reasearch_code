@@ -15,6 +15,7 @@ DOA<-ggplot(master, aes(x=master$Month, y=master$DO
   stat_summary(fun.y = mean, geom="line",color="red",size=1, aes(group=1))+
   stat_summary(fun.data = mean_se, geom="ribbon",fill="black", color="black")+
   labs(y="Dissolved Oxygen(%)")+
+  theme(axis.title.x = element_blank())+
   theme(plot.title = element_text(hjust=0.5))+
   ggtitle("Average DO Values")
 
@@ -24,8 +25,9 @@ NO3A<-ggplot(master, aes(x=master$Month, y=master$NO3
   theme_bw()+
   stat_summary(fun.y = mean, geom="line",color="red",size=1, aes(group=1))+
   stat_summary(fun.data = mean_se, geom="ribbon",fill="black", color="black")+
-  labs(y="[NO3] (mg/L)", color="Bank Side", shape="Well Number")+
-    theme(plot.title = element_text(hjust=0.5))+
+  labs(y="[NO3] (mg/L)")+
+  theme(axis.title.x = element_blank())+
+  theme(plot.title = element_text(hjust=0.5))+
   ggtitle("Average NO3 Concentrations")
 
 #Plots the monthly mean(+sd) concentrations of Sulfate
@@ -34,8 +36,9 @@ SO4A<-ggplot(master, aes(x=master$Month, y=master$SO4
   theme_bw()+
   stat_summary(fun.y = mean, geom="line",color="red",size=1, aes(group=1))+
   stat_summary(fun.data = mean_se, geom="ribbon",fill="black", color="black")+
-  labs(y="[SO4] (mg/L)", color="Bank Side", shape="Well Number")+
-    theme(plot.title = element_text(hjust=0.5))+
+  labs(y="[SO4] (mg/L)")+
+  theme(axis.title.x = element_blank())+
+  theme(plot.title = element_text(hjust=0.5))+
   ggtitle("Average SO4 Concentrations")
 
 
@@ -45,8 +48,9 @@ ClA<-ggplot(master, aes(x=master$Month, y=master$Cl
   theme_bw()+
   stat_summary(fun.y = mean, geom="line",color="red",size=1, aes(group=1))+
   stat_summary(fun.data = mean_se, geom="ribbon",fill="black", color="black")+
-  labs(y="[Cl] (mg/L)", color="Bank Side", shape="Well Number")+
-    theme(plot.title = element_text(hjust=0.5))+
+  labs(y="[Cl] (mg/L)")+
+  theme(axis.title.x = element_blank())+
+  theme(plot.title = element_text(hjust=0.5))+
   ggtitle("Average Cl Concentrations")
 
 #Plots the monthly mean(+sd) water temperatures
@@ -55,7 +59,8 @@ TempA<-ggplot(master, aes(x=master$Month, y=master$Temperature
   theme_bw()+
   stat_summary(fun.y = mean, geom="line",color="red",size=1, aes(group=1))+
   stat_summary(fun.data = mean_se, geom="ribbon",fill="black", color="black")+
-  labs(y="Water Temperat="Month", color="Bank Side", shape="Well Number")+
+  labs(y="Water Temperature (C)")+
+  theme(axis.title.x = element_blank())+
   theme(plot.title = element_text(hjust=0.5))+
   ggtitle("Average Water Temperatures")
 
@@ -65,7 +70,8 @@ pHA<-ggplot(master, aes(x=master$Month, y=master$pH
   theme_bw()+
   stat_summary(fun.y = mean, geom="line",color="red",size=1, aes(group=1))+
   stat_summary(fun.data = mean_se, geom="ribbon",fill="black", color="black")+
-  labs(y="Well Water pH", color="Bank Side", shape="Well Number")+
+  labs(y="Well Water pH")+
+  theme(axis.title.x = element_blank())+
   theme(plot.title = element_text(hjust=0.5))+
   ggtitle("Average pH Values")
 
@@ -75,7 +81,8 @@ SPCA<-ggplot(master, aes(x=master$Month, y=master$Conductivity
   theme_bw()+
   stat_summary(fun.y = mean, geom="line",color="red",size=1, aes(group=1))+
   stat_summary(fun.data = mean_se, geom="ribbon",fill="black", color="black")+
-  labs(y="Specific Conducm)", x="Month", color="Bank Side", shape="Well Number")+
+  labs(y="Specific Conductivity (us/cm))")+
+  theme(axis.title.x = element_blank())+
   theme(plot.title = element_text(hjust=0.5))+
   ggtitle("Average SPC Values")
 
@@ -85,7 +92,8 @@ AlkA<-ggplot(master, aes(x=master$Month, y=master$Alkalinity
   theme_bw()+
   stat_summary(fun.y = mean, geom="line",color="red",size=1, aes(group=1))+
   stat_summary(fun.data = mean_se, geom="ribbon",fill="black", color="black")+
-  labs(y="[HCO3] (mg/L)", color="Bank Side", shape="Well Number")+
+  labs(y="[HCO3] (mg/L)")+
+  theme(axis.title.x = element_blank())+
   theme(plot.title = element_text(hjust=0.5))+
   ggtitle("Average Water Alkalinity")
 
@@ -95,7 +103,8 @@ CaA<-ggplot(master, aes(x=master$Month, y=master$Ca
   theme_bw()+
   stat_summary(fun.y = mean, geom="line",color="red",size=1, aes(group=1))+
   stat_summary(fun.data = mean_se, geom="ribbon",fill="black", color="black")+
-  labs(y="[Ca] (mg/L)", color="Bank Side", shape="Well Number")+
+  labs(y="[Ca] (mg/L)")+
+  theme(axis.title.x = element_blank())+
   theme(plot.title = element_text(hjust=0.5))+
   ggtitle("Average Ca Concentrations")
 
@@ -105,7 +114,8 @@ KA<-ggplot(master, aes(x=master$Month, y=master$K
   theme_bw()+
   stat_summary(fun.y = mean, geom="line",color="red",size=1, aes(group=1))+
   stat_summary(fun.data = mean_se, geom="ribbon",fill="black", color="black")+
-  labs(y="[K] (mg/L)", xolor="Bank Side", shape="Well Number")+
+  labs(y="[K] (mg/L)")+
+  theme(axis.title.x = element_blank())+
   theme(plot.title = element_text(hjust=0.5))+
   ggtitle("Average K Concentrations")
 
@@ -115,7 +125,8 @@ MgA<-ggplot(master, aes(x=master$Month, y=master$Mg
   theme_bw()+
   stat_summary(fun.y = mean, geom="line",color="red",size=1, aes(group=1))+
   stat_summary(fun.data = mean_se, geom="ribbon",fill="black", color="black")+
-  labs(y="[Ng] (mg/L)", color="Bank Side", shape="Well Number")+
+  labs(y="[Ng] (mg/L)")+
+  theme(axis.title.x = element_blank())+
   theme(plot.title = element_text(hjust=0.5))+
   ggtitle("Average Mg Concentrations")
 
@@ -125,7 +136,8 @@ NaA<-ggplot(master, aes(x=master$Month, y=master$Na
   theme_bw()+
   stat_summary(fun.y = mean, geom="line",color="red",size=1, aes(group=1))+
   stat_summary(fun.data = mean_se, geom="ribbon",fill="black", color="black")+
-  labs(y="[Na] (mg/L)", color="Bank Side", shape="Well Number")+
+  labs(y="[Na] (mg/L)")+
+  theme(axis.title.x = element_blank())+
   theme(plot.title = element_text(hjust=0.5))+
   ggtitle("Average Na Concentrations")
 
@@ -134,8 +146,8 @@ anion_average<- ggarrange(NO3A, SO4A, ClA, AlkA,
           ncol=2, nrow=2)
 
 cation_average<- ggarrange(CaA, KA, MgA, NaA, 
-                          common.legend = TRUE, legend="bottom",
-                          ncol=2, nrow=2)
+          common.legend = TRUE, legend="bottom",
+          ncol=2, nrow=2)
 
 fieldpar_average<- ggarrange(DOA, pHA, SPCA, TempA,
           common.legend = TRUE, legend="bottom",
