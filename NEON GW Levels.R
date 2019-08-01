@@ -179,7 +179,9 @@ Stream <-ggarrange(P, SW, GW,
                   heights = c(.25,.25,.5),
                   ncol=1, nrow=3,
                   legend='bottom')
+
+#Saving the figure array as a pdf
+setwd("~/Desktop/R_Scripts/Figures")
 pdf("HydroGraph.pdf")
 print(Stream)
 dev.off()
-print(Stream)

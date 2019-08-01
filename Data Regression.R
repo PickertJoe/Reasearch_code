@@ -157,7 +157,8 @@ summarywell <-read.csv("SummaryW.csv")
 bankpar <- read.csv("SummaryB.csv")
 
 #Run these lines to print graphs to the folder
-setwd("~/Desktop/R_Scripts")
+setwd("~/Desktop/R_Scripts/Figures")
+
 pdf("Parameter summary.pdf", height=11, width=8.5)
 grid.table(summaryparyear, rows=NULL)
 dev.off()
