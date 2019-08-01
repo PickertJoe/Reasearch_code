@@ -7,7 +7,6 @@ setwd("~/Dropbox/EVRN 624 Files/Data/Rcodes/Data")
 master <- read.csv("MasterData.csv")
 
 #Below was my first attempt to plot using standard function
-#wellname <- as.factor(master[,2])
 #ns <-plot(master$NO3, master$SO4, xlab=names(master)[11], 
 #          ylab=names(master)[10], pch=16, 
 #          main = "Correlation Between NO3 and SO4",
@@ -17,6 +16,7 @@ master <- read.csv("MasterData.csv")
 #I switched to ggplot so I could save the plots as local variables
 #I plan on turning this into a for loop to reduce the lines of code
 
+wellname <- as.factor(master[,2])
 NS<-ggplot(master, aes(x=master$NO3, y=master$SO4, color=wellname))+ 
       geom_point(size=2)+
       theme_bw()+
