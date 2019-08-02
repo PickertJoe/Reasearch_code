@@ -6,6 +6,7 @@ library(cowplot)
 
 setwd("~/Desktop/R_Scripts/Data")
 master <- read.csv("MasterData.csv")
+master$Month = factor(master$Month, levels=c("Nov","Dec","Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"))
 
 #Plots the mean monthly dissolved oxygen values by bankside
 DOAB<-ggplot(master, aes(x=Month, y=DO, color=Bank, group=Bank 
