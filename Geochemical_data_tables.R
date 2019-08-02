@@ -31,9 +31,8 @@ banktable <- summary_table(dplyr::group_by(master, Bank), our_summary1)
 print(banktable)
 monthtable <- summary_table(dplyr::group_by(master, Month), our_summary1)
 pdf("testprint.pdf")
-grid.table(banktable)
+print(whole)
 dev.off()
-
 
 #This section contains all code to save data tables as pdfs
 
@@ -44,6 +43,19 @@ pdf(file = "total.pdf", height = 30, width = 12)
 grid.table(master,rows=NULL)
 dev.off()
 
+
+test <-aggregate(master, by=list(master$Month, master$Bank), FUN = mean, na.rm=TRUE, na.action = NULL)
+#For whatever reason, this aggregate creates three unecessary columns; remove them
+test[,3:5] <- NULL
+#Replace columns 1 and 2 with appropriate names
+colnames(test)[1:2] <- c("Month", "Bank")
+
+#Creating a custom vector to reorder table in sampling order
+month_order = c("Nov","Dec","Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct")
+test >%>
+  slice(match(month_order, Month))
+
+print(test)
 master %>%
   +     group_by(.dots=c('Month','Bank')) %>%
   +     summarize(x=mean(DO))
