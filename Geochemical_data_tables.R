@@ -12,27 +12,20 @@ library(qwraps2)
 setwd("~/Desktop/R_Scripts/Data")
 master <- read.csv("MasterData.csv")
 
-options(qwraps2_markup = "markdown")
+#Creating a new, separate data frame to hold mean values by month and bank
+means <-aggregate(master, by=list(master$Month, master$Bank), FUN = mean_sd(master), na.rm=TRUE, na.action = NULL)
 
+#For whatever reason, this aggregate creates three unecessary columns; remove them
+means[,3:5] <- NULL
 
-our_summary1 <-
-  list("Dissolved Oxygen(%)" =
-         list("Min" = ~ min(.data$DO, na.rm = TRUE),
-              "Max" = ~ max(.data$DO, na.rm = TRUE),
-              "Mean (sd)" = ~ qwraps2::mean_sd(.data$DO, na_rm = TRUE, denote_sd = "pm")),
-      "Specific Conductivity(us/cm)" = 
-        list("Min" = ~ min(.data$Conductivity, na.rm = TRUE),
-             "Max" = ~ max(.data$Conductivity, na.rm = TRUE),
-             "Mean (sd)" = ~ qwraps2::mean_sd(.data$Conductivity, na_rm = TRUE, denote_sd = "pm")))
+#Replace columns 1 and 2 with appropriate names
+colnames(means)[1:2] <- c("Month", "Bank")
 
-whole <- summary_table(master, our_summary1)
-print(whole)
-banktable <- summary_table(dplyr::group_by(master, Bank), our_summary1)
-print(banktable)
-monthtable <- summary_table(dplyr::group_by(master, Month), our_summary1)
-pdf("testprint.pdf")
-print(whole)
-dev.off()
+#Creating a custom vector to reorder table in sampling order
+month_order = c("Nov","Dec","Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct")
+means <- means %>%
+  mutate(Month = factor(Month, levels = month_order)) %>%
+  arrange(Month)
 
 #This section contains all code to save data tables as pdfs
 
@@ -44,16 +37,7 @@ grid.table(master,rows=NULL)
 dev.off()
 
 
-test <-aggregate(master, by=list(master$Month, master$Bank), FUN = mean, na.rm=TRUE, na.action = NULL)
-#For whatever reason, this aggregate creates three unecessary columns; remove them
-test[,3:5] <- NULL
-#Replace columns 1 and 2 with appropriate names
-colnames(test)[1:2] <- c("Month", "Bank")
 
-#Creating a custom vector to reorder table in sampling order
-month_order = c("Nov","Dec","Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct")
-test >%>
-  slice(match(month_order, Month))
 
 print(test)
 master %>%
