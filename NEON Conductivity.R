@@ -2,7 +2,7 @@ library(data.table)
 library(ggplot2)
 library(dplyr)
 
-setwd("~/Dropbox/EVRN 624 Files/Data/GWData/Raw/Neon_cond/5_min_data")
+setwd("~/Desktop/R_Scripts/Data/GWData/Raw/NEON_cond-groundwater/5_min_data")
 
 ##**** SUPER IMPORTANT the headers in all the fils need to be the same for this to work 
 files1 = list.files(pattern=c(".301.","*.csv")) # hear what we are doing is make a list that contains all CSV files 
@@ -114,6 +114,7 @@ C<- ggplot(COND.long, aes(x=Date_Time, y=value, group=variable, color=list2))+
   #                              Well6="red1",
   #                              Well7="deeppink1",
   #                              Well8="darkgoldenrod4"))
-#pdf("NEON Water Levels.pdf")
+setwd("~/Desktop/R_Scripts/Figures/")
+pdf("NEON_Conductivity.pdf")
 print(C)
-#dev.off()
+dev.off()
