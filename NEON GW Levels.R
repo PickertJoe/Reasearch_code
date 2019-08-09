@@ -135,9 +135,8 @@ GW<- ggplot(WLA.long, aes(x=factor(Date_Time), y=value, group=variable, color=li
   scale_color_manual(values = c(Ag="black",
                                 Pr="blue"))+
   scale_x_discrete(breaks=c('2016-09-01', '2017-01-01', '2017-07-01', '2018-01-01', '2018-07-01', '2019-01-01'),
-                     labels=c("2016-09", "2017-01", "2017-07", "2018-01", "2018-07", "2019-01"))
-  #scale_linetype_manual(values=c(1,2,3,4,5,6,1,2))
-#pdf("NEON Water Levels.pdf")
+                     labels=c("2016-09", "2017-01", "2017-07", "2018-01", "2018-07", "2019-01"))+
+  annotate("point", x='2018-08-01', y=323.5, color='red')
 print(GW)
 
 
