@@ -46,6 +46,7 @@ well6[2]<-NULL
 well7[2]<-NULL
 well8[2]<-NULL
 
+#Hard-coded values to remove excessively extraneous data points
 well1<-subset(well1, groundwaterSpecCond >550)
 well2<-subset(well2, groundwaterSpecCond >550)
 well3<-subset(well3, groundwaterSpecCond >550)
@@ -54,6 +55,17 @@ well5<-subset(well5, groundwaterSpecCond >550)
 well6<-subset(well6, groundwaterSpecCond >550)
 well7<-subset(well7, groundwaterSpecCond >550)
 well8<-subset(well8, groundwaterSpecCond >550)
+
+well1<-subset(well1, groundwaterSpecCond <800)
+well2<-subset(well2, groundwaterSpecCond <800)
+well3<-subset(well3, groundwaterSpecCond <800)
+well4<-subset(well4, groundwaterSpecCond <800)
+well5<-subset(well5, groundwaterSpecCond <800)
+well6<-subset(well6, groundwaterSpecCond <800)
+well7<-subset(well7, groundwaterSpecCond <800)
+well8<-subset(well8, groundwaterSpecCond <800)
+
+
 
 #now you need to add date and time with Posixct
 well1$startDateTime<-as.POSIXct(well1$startDateTime,format="%Y-%m-%dT%H:%M")
@@ -95,6 +107,8 @@ COND.long <- COND.long[order(COND.long$Date_Time), ]
 bank <- c("Ag","Pr","Pr","Ag","Pr","Ag","Ag","Pr")
 list2 <- rep(bank, length.out=nrow(COND.long))
 COND.long<- cbind(COND.long, list2)
+
+#Plots averaged daily conductivity values for all the wells
 C<- ggplot(COND.long, aes(x=Date_Time, y=value, group=variable, color=list2))+
   geom_line(aes(linetype=COND.long$variable), size=1)+
   theme_bw()+
@@ -103,18 +117,48 @@ C<- ggplot(COND.long, aes(x=Date_Time, y=value, group=variable, color=list2))+
 
   scale_color_manual(values = c(Ag="black",
                                 Pr="blue"))+
-  #geom_point(aes(shape=WLA.long$variable))+
-  #scale_shape_manual(values=c(0,1,2,5,6,8,11,14))
-  scale_linetype_manual(values=c(1,2,3,4,5,6,1,2))
-  #scale_color_manual(values = c(Well1="black",
-  #                              Well2="dodgerblue4",
-  #                              Well3="cyan1",
-  #                              Well4="forestgreen",
-  #                              Well5="darkmagenta",
-  #                              Well6="red1",
-  #                              Well7="deeppink1",
-  #                              Well8="darkgoldenrod4"))
+   scale_linetype_manual(values=c(1,2,3,4,5,6,1,2))
+
+#Plotting just the agricultural bank
+AgC <- ggplot(subset(COND.long, variable %in% c("Well1", "Well4", "Well6", "Well7")))+
+  geom_line(aes(factor(Date_Time), value, group=variable, color=variable), size=1)+
+    theme_bw()+
+    labs(y="Conductivity(us/cm)", color="Well Number")+
+    ggtitle("Agricultural Bank Conductivity")+
+    theme(legend.position = 'bottom')+
+    theme(axis.title.x = element_blank())+
+    theme(plot.title = element_text(hjust=0.5))+
+    scale_x_discrete(breaks=c('2016-09-01', '2017-01-01', '2017-07-01', '2018-01-01', '2018-07-01', '2019-01-01'),
+                     labels=c("2016-09", "2017-01", "2017-07", "2018-01", "2018-07", "2019-01"))
+print(AgC)
+
+#Plotting just the prairie bank
+PrC <- ggplot(subset(COND.long, variable %in% c("Well2", "Well3", "Well5", "Well8")))+
+  geom_line(aes(factor(Date_Time), value, group=variable, color=variable), size=1)+
+    theme_bw()+
+    labs(x="Date", y="Conductivity(us/cm)", color="Well Number")+
+    ggtitle("Prairie Bank Conductivity")+
+    theme(legend.position = 'bottom')+
+    theme(axis.title.x = element_blank())+
+    theme(plot.title = element_text(hjust=0.5))+
+    scale_x_discrete(breaks=c('2016-09-01', '2017-01-01', '2017-07-01', '2018-01-01', '2018-07-01', '2019-01-01'),
+                     labels=c("2016-09", "2017-01", "2017-07", "2018-01", "2018-07", "2019-01"))
+
+print(PrC)
+
+BankConductivity <-ggarrange(AgC, PrC,
+                   ncol=1, nrow=2,
+                   legend='bottom')
+
+
 setwd("~/Desktop/R_Scripts/Figures/")
-pdf("NEON_Conductivity.pdf")
+
+#Plotting all conductivity data
+pdf("NEON_Total_Conductivity.pdf")
 print(C)
+dev.off()
+
+#Printing both bankside conductivity graphs
+pdf("NEON_Bankside_Coductivity.pdf")
+print(BankConductivity)
 dev.off()
