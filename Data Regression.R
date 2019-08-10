@@ -134,6 +134,24 @@ Cor_par<-round(cor(master[,c(5:8)], y=NULL,
 Cor_ion<-round(cor(master[,c(9:14,16:17)], y=NULL,
               use = "pairwise.complete.obs", method = "pearson"), 3)
 
+Cor_total<-round(cor(master[,c(5:14,16:17)], y=NULL,
+              use = "pairwise.complete.obs", method = "pearson"), 3)
+
+#Here, we create subsets of the data from the prairie and cultivated banks
+#To explore if correlations differed between them
+
+Ag_data <- master[which(master$Bank=='Ag'),]
+Pr_data <- master[which(master$Bank=='Pr'),]
+
+#Creating the correlation matrices for both banks
+
+Cor_Ag <- round(cor(Ag_data[,c(5:14,16:17)], y=NULL,
+                use = "pairwise.complete.obs", method = "pearson"), 3)
+
+Cor_Pr <- round(cor(Pr_data[,c(5:14,16:17)], y=NULL,
+                    use = "pairwise.complete.obs", method = "pearson"), 3)
+
+
 
 #This section can be used to print summary statistic tables over time
 #And for individual wells
@@ -151,12 +169,24 @@ pdf("Parameter summary.pdf", height=11, width=8.5)
 grid.table(summaryparyear, rows=NULL)
 dev.off()
 
-pdf("Ion summary.pdf", height=11, width=8.5)
+pdf("Ion_correlations.pdf", height=11, width=8.5)
 grid.table(Cor_ion)
 dev.off()
 
-pdf("Field Parameter Correlations.pdf", height=11, width = 8.5)
+pdf("Parameter_Correlations.pdf", height=11, width = 8.5)
 grid.table(Cor_par)
+dev.off()
+
+pdf("Total_Correlations.pdf", height=11, width = 8.5)
+grid.table(Cor_total)
+dev.off()
+
+pdf("Ag_Correlations.pdf", height=11, width = 8.5)
+grid.table(Cor_Ag)
+dev.off()
+
+pdf("Pr_Correlations.pdf", height=11, width = 8.5)
+grid.table(Cor_Pr)
 dev.off()
 
 pdf("Well summary.pdf", height=11, width=8.5)
