@@ -136,7 +136,18 @@ GW<- ggplot(WLA.long, aes(x=factor(Date_Time), y=value, group=variable, color=li
                                 Pr="blue"))+
   scale_x_discrete(breaks=c('2016-09-01', '2017-01-01', '2017-07-01', '2018-01-01', '2018-07-01', '2019-01-01'),
                      labels=c("2016-09", "2017-01", "2017-07", "2018-01", "2018-07", "2019-01"))+
-  annotate("point", x='2018-08-01', y=323.5, color='red')
+  #Adding annotation points to designate sampling dates
+  annotate("point", x='2018-08-25', y=322.6, color='red', size=3)+
+  annotate("point", x='2018-09-15', y=322.6, color='red', size=3)+
+  annotate("point", x='2018-04-14', y=322.6, color='red', size=3)+
+  annotate("point", x='2018-05-09', y=322.6, color='red', size=3)+
+  annotate("point", x='2019-01-06', y=322.6, color='red', size=3)+
+  annotate("point", x='2018-02-03', y=322.6, color='red', size=3)+
+  annotate("point", x='2017-11-01', y=322.6, color='red', size=3)+
+  annotate("point", x='2017-12-02', y=322.6, color='red', size=3)+
+  annotate("point", x='2018-03-02', y=322.6, color='red', size=3)+
+  annotate("point", x='2018-06-15', y=322.6, color='red', size=3)+
+  annotate("point", x='2018-01-08', y=322.6, color='red', size=3)
 print(GW)
 
 
