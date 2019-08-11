@@ -259,7 +259,6 @@ PR_NO3_COND<-ggplot(Pr_data, aes(x=NO3, y=Conductivity, color=factor(Well)))+
   annotate("text", x=1, y=625, label = "paste(italic(R) ^ 2, \" = -0.61\")", parse=TRUE)+
   theme(legend.position = 'bottom')+
   theme(plot.title = element_text(hjust=0.5))
-print(PR_NO3_COND)
 
 PR_NO3_SO4<-ggplot(Pr_data, aes(x=NO3, y=SO4, color=factor(Well)))+
   geom_point(size=2)+
@@ -270,7 +269,6 @@ PR_NO3_SO4<-ggplot(Pr_data, aes(x=NO3, y=SO4, color=factor(Well)))+
   annotate("text", x=1.5, y=40, label = "paste(italic(R) ^ 2, \" = 0.84\")", parse=TRUE)+
   theme(legend.position = 'bottom')+
   theme(plot.title = element_text(hjust=0.5))
-print(PR_NO3_SO4)
 
 PR_SO4_COND<-ggplot(Pr_data, aes(x=SO4, y=Conductivity, color=factor(Well)))+
   geom_point(size=2)+
@@ -281,7 +279,6 @@ PR_SO4_COND<-ggplot(Pr_data, aes(x=SO4, y=Conductivity, color=factor(Well)))+
   annotate("text", x=40, y=625, label = "paste(italic(R) ^ 2, \" = -0.772\")", parse=TRUE)+
   theme(legend.position = 'bottom')+
   theme(plot.title = element_text(hjust=0.5))
-print(PR_SO4_COND)
 
 PR_K_Na<-ggplot(Pr_data, aes(x=K, y=Na, color=factor(Well)))+
   geom_point(size=2)+
@@ -292,17 +289,16 @@ PR_K_Na<-ggplot(Pr_data, aes(x=K, y=Na, color=factor(Well)))+
   annotate("text", x=1, y=4.75, label = "paste(italic(R) ^ 2, \" = 0.795\")", parse=TRUE)+
   theme(legend.position = 'bottom')+
   theme(plot.title = element_text(hjust=0.5))
-print(PR_K_Na)
 
-Pr_Corr_Plots <- ggarrange(AG_NO3_COND,AG_NO3_Cl, AG_NO3_K, AG_NO3_SO4, 
-                           AG_SO4_COND, AG_CA_MG,
+Pr_Corr_Plots <- ggarrange(PR_NO3_TEMP,PR_NO3_Cl, PR_NO3_COND, PR_NO3_SO4, 
+                           PR_SO4_COND, PR_K_Na,
                            common.legend = TRUE, legend="bottom",
                            ncol=2, nrow=3)
 Pr_Corr_Plots <- annotate_figure(Pr_Corr_Plots, top = text_grob("Significant Correlations (Pr)", 
                                                                 color='black', face= 'bold', size=18))
 
 ########################################
-####END AG REGRESSION CODE BLOCK########
+####END PR REGRESSION CODE BLOCK########
 ########################################
 
 Cor_par<-round(cor(master[,c(5:8)], y=NULL,
