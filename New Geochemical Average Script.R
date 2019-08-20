@@ -15,6 +15,8 @@ DOA<-ggplot(master, aes(x=master$Month, y=master$DO
   stat_summary(fun.y = mean, geom="line",color="red",size=1, aes(group=1))+
   stat_summary(fun.data = mean_se, geom="ribbon",fill="black", color="black")+
   labs(y="Dissolved Oxygen(%)")+
+  scale_x_discrete(breaks=c("Nov '17","Dec '17","Jan '18","Feb '18","Mar '18", "Apr '18", "May '18", "Jun '18", "Jul '18", "Aug '18", "Sep '18", "Jan '19"),
+                   labels=c("Nov","Dec","Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Jan"))+
   theme(axis.title.x = element_blank())+
   theme(plot.title = element_text(hjust=0.5))+
   ggtitle("Average DO Values")
@@ -26,6 +28,8 @@ NO3A<-ggplot(master, aes(x=master$Month, y=master$NO3
   stat_summary(fun.y = mean, geom="line",color="red",size=1, aes(group=1))+
   stat_summary(fun.data = mean_se, geom="ribbon",fill="black", color="black")+
   labs(y="[NO3-N] (mg/L)")+
+  scale_x_discrete(breaks=c("Nov '17","Dec '17","Jan '18","Feb '18","Mar '18", "Apr '18", "May '18", "Jun '18", "Jul '18", "Aug '18", "Sep '18", "Jan '19"),
+                   labels=c("Nov","Dec","Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Jan"))+
   theme(axis.title.x = element_blank())+
   theme(plot.title = element_text(hjust=0.5))+
   ggtitle("Average NO3 Concentrations")
@@ -37,6 +41,8 @@ SO4A<-ggplot(master, aes(x=master$Month, y=master$SO4
   stat_summary(fun.y = mean, geom="line",color="red",size=1, aes(group=1))+
   stat_summary(fun.data = mean_se, geom="ribbon",fill="black", color="black")+
   labs(y="[SO4] (mg/L)")+
+  scale_x_discrete(breaks=c("Nov '17","Dec '17","Jan '18","Feb '18","Mar '18", "Apr '18", "May '18", "Jun '18", "Jul '18", "Aug '18", "Sep '18", "Jan '19"),
+                   labels=c("Nov","Dec","Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Jan"))+
   theme(axis.title.x = element_blank())+
   theme(plot.title = element_text(hjust=0.5))+
   ggtitle("Average SO4 Concentrations")
@@ -49,6 +55,8 @@ ClA<-ggplot(master, aes(x=master$Month, y=master$Cl
   stat_summary(fun.y = mean, geom="line",color="red",size=1, aes(group=1))+
   stat_summary(fun.data = mean_se, geom="ribbon",fill="black", color="black")+
   labs(y="[Cl] (mg/L)")+
+  scale_x_discrete(breaks=c("Nov '17","Dec '17","Jan '18","Feb '18","Mar '18", "Apr '18", "May '18", "Jun '18", "Jul '18", "Aug '18", "Sep '18", "Jan '19"),
+                   labels=c("Nov","Dec","Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Jan"))+
   theme(axis.title.x = element_blank())+
   theme(plot.title = element_text(hjust=0.5))+
   ggtitle("Average Cl Concentrations")
@@ -60,6 +68,8 @@ TempA<-ggplot(master, aes(x=master$Month, y=master$Temperature
   stat_summary(fun.y = mean, geom="line",color="red",size=1, aes(group=1))+
   stat_summary(fun.data = mean_se, geom="ribbon",fill="black", color="black")+
   labs(y="Water Temperature (C)")+
+  scale_x_discrete(breaks=c("Nov '17","Dec '17","Jan '18","Feb '18","Mar '18", "Apr '18", "May '18", "Jun '18", "Jul '18", "Aug '18", "Sep '18", "Jan '19"),
+                   labels=c("Nov","Dec","Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Jan"))+
   theme(axis.title.x = element_blank())+
   theme(plot.title = element_text(hjust=0.5))+
   ggtitle("Average Water Temperatures")
@@ -71,6 +81,8 @@ pHA<-ggplot(master, aes(x=master$Month, y=master$pH
   stat_summary(fun.y = mean, geom="line",color="red",size=1, aes(group=1))+
   stat_summary(fun.data = mean_se, geom="ribbon",fill="black", color="black")+
   labs(y="Well Water pH")+
+  scale_x_discrete(breaks=c("Nov '17","Dec '17","Jan '18","Feb '18","Mar '18", "Apr '18", "May '18", "Jun '18", "Jul '18", "Aug '18", "Sep '18", "Jan '19"),
+                   labels=c("Nov","Dec","Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Jan"))+
   theme(axis.title.x = element_blank())+
   theme(plot.title = element_text(hjust=0.5))+
   ggtitle("Average pH Values")
@@ -82,6 +94,8 @@ SPCA<-ggplot(master, aes(x=master$Month, y=master$Conductivity
   stat_summary(fun.y = mean, geom="line",color="red",size=1, aes(group=1))+
   stat_summary(fun.data = mean_se, geom="ribbon",fill="black", color="black")+
   labs(y="Specific Conductivity (us/cm))")+
+  scale_x_discrete(breaks=c("Nov '17","Dec '17","Jan '18","Feb '18","Mar '18", "Apr '18", "May '18", "Jun '18", "Jul '18", "Aug '18", "Sep '18", "Jan '19"),
+                   labels=c("Nov","Dec","Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Jan"))+
   theme(axis.title.x = element_blank())+
   theme(plot.title = element_text(hjust=0.5))+
   ggtitle("Average SPC Values")
@@ -93,6 +107,8 @@ AlkA<-ggplot(master, aes(x=master$Month, y=master$Alkalinity
   stat_summary(fun.y = mean, geom="line",color="red",size=1, aes(group=1))+
   stat_summary(fun.data = mean_se, geom="ribbon",fill="black", color="black")+
   labs(y="[HCO3] (mg/L)")+
+  scale_x_discrete(breaks=c("Nov '17","Dec '17","Jan '18","Feb '18","Mar '18", "Apr '18", "May '18", "Jun '18", "Jul '18", "Aug '18", "Sep '18", "Jan '19"),
+                   labels=c("Nov","Dec","Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Jan"))+
   theme(axis.title.x = element_blank())+
   theme(plot.title = element_text(hjust=0.5))+
   ggtitle("Average Water Alkalinity")
@@ -104,6 +120,8 @@ CaA<-ggplot(master, aes(x=master$Month, y=master$Ca
   stat_summary(fun.y = mean, geom="line",color="red",size=1, aes(group=1))+
   stat_summary(fun.data = mean_se, geom="ribbon",fill="black", color="black")+
   labs(y="[Ca] (mg/L)")+
+  scale_x_discrete(breaks=c("Nov '17","Dec '17","Jan '18","Feb '18","Mar '18", "Apr '18", "May '18", "Jun '18", "Jul '18", "Aug '18", "Sep '18", "Jan '19"),
+                   labels=c("Nov","Dec","Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Jan"))+
   theme(axis.title.x = element_blank())+
   theme(plot.title = element_text(hjust=0.5))+
   ggtitle("Average Ca Concentrations")
@@ -115,6 +133,8 @@ KA<-ggplot(master, aes(x=master$Month, y=master$K
   stat_summary(fun.y = mean, geom="line",color="red",size=1, aes(group=1))+
   stat_summary(fun.data = mean_se, geom="ribbon",fill="black", color="black")+
   labs(y="[K] (mg/L)")+
+  scale_x_discrete(breaks=c("Nov '17","Dec '17","Jan '18","Feb '18","Mar '18", "Apr '18", "May '18", "Jun '18", "Jul '18", "Aug '18", "Sep '18", "Jan '19"),
+                   labels=c("Nov","Dec","Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Jan"))+
   theme(axis.title.x = element_blank())+
   theme(plot.title = element_text(hjust=0.5))+
   ggtitle("Average K Concentrations")
@@ -126,6 +146,8 @@ MgA<-ggplot(master, aes(x=master$Month, y=master$Mg
   stat_summary(fun.y = mean, geom="line",color="red",size=1, aes(group=1))+
   stat_summary(fun.data = mean_se, geom="ribbon",fill="black", color="black")+
   labs(y="[Ng] (mg/L)")+
+  scale_x_discrete(breaks=c("Nov '17","Dec '17","Jan '18","Feb '18","Mar '18", "Apr '18", "May '18", "Jun '18", "Jul '18", "Aug '18", "Sep '18", "Jan '19"),
+                   labels=c("Nov","Dec","Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Jan"))+
   theme(axis.title.x = element_blank())+
   theme(plot.title = element_text(hjust=0.5))+
   ggtitle("Average Mg Concentrations")
@@ -137,6 +159,8 @@ NaA<-ggplot(master, aes(x=master$Month, y=master$Na
   stat_summary(fun.y = mean, geom="line",color="red",size=1, aes(group=1))+
   stat_summary(fun.data = mean_se, geom="ribbon",fill="black", color="black")+
   labs(y="[Na] (mg/L)")+
+  scale_x_discrete(breaks=c("Nov '17","Dec '17","Jan '18","Feb '18","Mar '18", "Apr '18", "May '18", "Jun '18", "Jul '18", "Aug '18", "Sep '18", "Jan '19"),
+                   labels=c("Nov","Dec","Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Jan"))+
   theme(axis.title.x = element_blank())+
   theme(plot.title = element_text(hjust=0.5))+
   ggtitle("Average Na Concentrations")
