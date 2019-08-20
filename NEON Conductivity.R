@@ -119,6 +119,20 @@ C<- ggplot(COND.long, aes(x=Date_Time, y=value, group=variable, color=list2))+
                                 Pr="blue"))+
    scale_linetype_manual(values=c(1,2,3,4,5,6,1,2))
 
+#Plots whole data set averaged by bankside
+CBank<- ggplot(COND.long, aes(x=factor(Date_Time), y=value, group=list2, color=list2))+
+  stat_summary(fun.y = mean, geom="line",size=1)+
+  theme_bw()+
+  labs(y="Conductivity(us/cm)", color="Bank Side")+
+  ggtitle("NEON Well Water Conductivity")+
+  theme(plot.title = element_text(hjust=0.5))+
+  theme(legend.position = 'bottom')+
+  scale_color_manual(values = c(Ag="black",
+                                Pr="blue"))+
+  theme(axis.title.x = element_blank())+
+  scale_x_discrete(breaks=c('2016-09-01', '2017-01-01', '2017-07-01', '2018-01-01', '2018-07-01', '2019-01-01'),
+                   labels=c("2016-09", "2017-01", "2017-07", "2018-01", "2018-07", "2019-01"))
+
 #Plotting just the agricultural bank
 AgC <- ggplot(subset(COND.long, variable %in% c("Well1", "Well4", "Well6", "Well7")))+
   geom_line(aes(factor(Date_Time), value, group=variable, color=variable), size=1)+
@@ -159,6 +173,24 @@ print(C)
 dev.off()
 
 #Printing both bankside conductivity graphs
-pdf("NEON_Bankside_Coductivity.pdf")
+pdf("NEON_Bankside_Well.pdf")
 print(BankConductivity)
+dev.off()
+
+#Printhing the bankside average plots
+pdf("NEON_Bankside_Average.pdf")
+print(CBank)
+dev.off()
+
+#This section of code will create an array to compare the NEON
+#Water elevations and the NEON conductivity values by bankside
+#This will require you to run the NEON GW Levels.R script in order to work
+
+GW_COND <- ggarrange(GW, CBank,
+                     ncol=1,
+                     nrow = 2,
+                     legend='bottom')
+
+pdf("Combined_GW_Conductivity.pdf")
+print(GW_COND)
 dev.off()

@@ -150,7 +150,6 @@ GW<- ggplot(WLA.long, aes(x=factor(Date_Time), y=value, group=variable, color=li
   annotate("point", x='2018-01-08', y=322.6, color='red', size=3)
 print(GW)
 
-
 #This portion of code reads in stream flow data and adds to plot of GW
 
 setwd("~/Desktop/R_Scripts/Data/")
