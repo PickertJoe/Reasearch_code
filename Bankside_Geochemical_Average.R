@@ -16,6 +16,8 @@ DOAB<-ggplot(master, aes(x=Month, y=DO, color=Bank, group=Bank
   stat_summary(fun.data = mean_se, geom="pointrange")+
   scale_color_manual(values = c(Ag="black",
                                 Pr="blue"))+
+  scale_x_discrete(breaks=c("Nov '17","Dec '17","Jan '18","Feb '18","Mar '18", "Apr '18", "May '18", "Jun '18", "Jul '18", "Aug '18", "Sep '18", "Jan '19"),
+                   labels=c("Nov","Dec","Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Jan"))+
   theme(legend.position = 'bottom')+
   theme(plot.title = element_text(hjust=0.5))+
   theme(axis.title.x = element_blank())+
@@ -30,6 +32,8 @@ SPCAB<-ggplot(master, aes(x=Month, y=Conductivity, color=Bank, group=Bank
   stat_summary(fun.data = mean_se, geom="pointrange")+
   scale_color_manual(values = c(Ag="black",
                                 Pr="blue"))+
+  scale_x_discrete(breaks=c("Nov '17","Dec '17","Jan '18","Feb '18","Mar '18", "Apr '18", "May '18", "Jun '18", "Jul '18", "Aug '18", "Sep '18", "Jan '19"),
+                   labels=c("Nov","Dec","Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Jan"))+
   theme(legend.position = 'bottom')+
   theme(plot.title = element_text(hjust=0.5))+
   theme(axis.title.x = element_blank())+
@@ -44,6 +48,8 @@ TempAB<-ggplot(master, aes(x=Month, y=Temperature, color=Bank, group=Bank
   stat_summary(fun.data = mean_se, geom="pointrange")+
   scale_color_manual(values = c(Ag="black",
                                 Pr="blue"))+
+  scale_x_discrete(breaks=c("Nov '17","Dec '17","Jan '18","Feb '18","Mar '18", "Apr '18", "May '18", "Jun '18", "Jul '18", "Aug '18", "Sep '18", "Jan '19"),
+                   labels=c("Nov","Dec","Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Jan"))+
   theme(legend.position = 'bottom')+
   theme(plot.title = element_text(hjust=0.5))+
   theme(axis.title.x = element_blank())+
@@ -58,6 +64,8 @@ pHAB<-ggplot(master, aes(x=Month, y=pH, color=Bank, group=Bank
   stat_summary(fun.data = mean_se, geom="pointrange")+
   scale_color_manual(values = c(Ag="black",
                                 Pr="blue"))+
+  scale_x_discrete(breaks=c("Nov '17","Dec '17","Jan '18","Feb '18","Mar '18", "Apr '18", "May '18", "Jun '18", "Jul '18", "Aug '18", "Sep '18", "Jan '19"),
+                   labels=c("Nov","Dec","Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Jan"))+
   theme(legend.position = 'bottom')+
   theme(plot.title = element_text(hjust=0.5))+
   theme(axis.title.x = element_blank())+
@@ -72,6 +80,8 @@ AlkAB<-ggplot(master, aes(x=Month, y=Alkalinity, color=Bank, group=Bank
   stat_summary(fun.data = mean_se, geom="pointrange")+
   scale_color_manual(values = c(Ag="black",
                                 Pr="blue"))+
+  scale_x_discrete(breaks=c("Nov '17","Dec '17","Jan '18","Feb '18","Mar '18", "Apr '18", "May '18", "Jun '18", "Jul '18", "Aug '18", "Sep '18", "Jan '19"),
+                   labels=c("Nov","Dec","Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Jan"))+
   theme(legend.position = 'bottom')+
   theme(plot.title = element_text(hjust=0.5))+
   theme(axis.title.x = element_blank())+
@@ -86,6 +96,8 @@ NO3AB<-ggplot(master, aes(x=Month, y=NO3, color=Bank, group=Bank
   stat_summary(fun.data = mean_se, geom="pointrange")+
   scale_color_manual(values = c(Ag="black",
                                 Pr="blue"))+
+  scale_x_discrete(breaks=c("Nov '17","Dec '17","Jan '18","Feb '18","Mar '18", "Apr '18", "May '18", "Jun '18", "Jul '18", "Aug '18", "Sep '18", "Jan '19"),
+                   labels=c("Nov","Dec","Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Jan"))+
   theme(legend.position = 'bottom')+
   theme(plot.title = element_text(hjust=0.5))+
   theme(axis.title.x = element_blank())+
@@ -100,6 +112,8 @@ SO4AB<-ggplot(master, aes(x=Month, y=SO4, color=Bank, group=Bank
   stat_summary(fun.data = mean_se, geom="pointrange")+
   scale_color_manual(values = c(Ag="black",
                                 Pr="blue"))+
+  scale_x_discrete(breaks=c("Nov '17","Dec '17","Jan '18","Feb '18","Mar '18", "Apr '18", "May '18", "Jun '18", "Jul '18", "Aug '18", "Sep '18", "Jan '19"),
+                   labels=c("Nov","Dec","Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Jan"))+
   theme(legend.position = 'bottom')+
   theme(plot.title = element_text(hjust=0.5))+
   theme(axis.title.x = element_blank())+
@@ -114,6 +128,8 @@ ClAB<-ggplot(master, aes(x=Month, y=Cl, color=Bank, group=Bank
   stat_summary(fun.data = mean_se, geom="pointrange")+
   scale_color_manual(values = c(Ag="black",
                                 Pr="blue"))+
+  scale_x_discrete(breaks=c("Nov '17","Dec '17","Jan '18","Feb '18","Mar '18", "Apr '18", "May '18", "Jun '18", "Jul '18", "Aug '18", "Sep '18", "Jan '19"),
+                   labels=c("Nov","Dec","Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Jan"))+
   theme(legend.position = 'bottom')+
   theme(plot.title = element_text(hjust=0.5))+
   theme(axis.title.x = element_blank())+
@@ -128,6 +144,8 @@ CaAB<-ggplot(master, aes(x=Month, y=Ca, color=Bank, group=Bank
   stat_summary(fun.data = mean_se, geom="pointrange")+
   scale_color_manual(values = c(Ag="black",
                                 Pr="blue"))+
+  scale_x_discrete(breaks=c("Nov '17","Dec '17","Jan '18","Feb '18","Mar '18", "Apr '18", "May '18", "Jun '18", "Jul '18", "Aug '18", "Sep '18", "Jan '19"),
+                   labels=c("Nov","Dec","Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Jan"))+
   theme(legend.position = 'bottom')+
   theme(plot.title = element_text(hjust=0.5))+
   theme(axis.title.x = element_blank())+
@@ -142,6 +160,8 @@ NaAB<-ggplot(master, aes(x=Month, y=Na, color=Bank, group=Bank
   stat_summary(fun.data = mean_se, geom="pointrange")+
   scale_color_manual(values = c(Ag="black",
                                 Pr="blue"))+
+  scale_x_discrete(breaks=c("Nov '17","Dec '17","Jan '18","Feb '18","Mar '18", "Apr '18", "May '18", "Jun '18", "Jul '18", "Aug '18", "Sep '18", "Jan '19"),
+                   labels=c("Nov","Dec","Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Jan"))+
   theme(legend.position = 'bottom')+
   theme(plot.title = element_text(hjust=0.5))+
   theme(axis.title.x = element_blank())+
@@ -156,6 +176,8 @@ MgAB<-ggplot(master, aes(x=Month, y=Mg, color=Bank, group=Bank
   stat_summary(fun.data = mean_se, geom="pointrange")+
   scale_color_manual(values = c(Ag="black",
                                 Pr="blue"))+
+  scale_x_discrete(breaks=c("Nov '17","Dec '17","Jan '18","Feb '18","Mar '18", "Apr '18", "May '18", "Jun '18", "Jul '18", "Aug '18", "Sep '18", "Jan '19"),
+                   labels=c("Nov","Dec","Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Jan"))+
   theme(legend.position = 'bottom')+
   theme(plot.title = element_text(hjust=0.5))+
   theme(axis.title.x = element_blank())+
@@ -170,6 +192,8 @@ KAB<-ggplot(master, aes(x=Month, y=K, color=Bank, group=Bank
   stat_summary(fun.data = mean_se, geom="pointrange")+
   scale_color_manual(values = c(Ag="black",
                                 Pr="blue"))+
+  scale_x_discrete(breaks=c("Nov '17","Dec '17","Jan '18","Feb '18","Mar '18", "Apr '18", "May '18", "Jun '18", "Jul '18", "Aug '18", "Sep '18", "Jan '19"),
+                   labels=c("Nov","Dec","Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Jan"))
   theme(legend.position = 'bottom')+
   theme(plot.title = element_text(hjust=0.5))+
   theme(axis.title.x = element_blank())+
