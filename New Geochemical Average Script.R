@@ -14,7 +14,7 @@ DOA<-ggplot(master, aes(x=master$Month, y=master$DO
   theme_bw()+
   stat_summary(fun.y = mean, geom="line",color="red",size=1, aes(group=1))+
   stat_summary(fun.data = mean_se, geom="ribbon",fill="black", color="black")+
-  labs(y="Dissolved Oxygen(%)")+
+  labs(y="Dissolved Oxygen(ppm)")+
   scale_x_discrete(breaks=c("Nov '17","Dec '17","Jan '18","Feb '18","Mar '18", "Apr '18", "May '18", "Jun '18", "Jul '18", "Aug '18", "Sep '18", "Jan '19"),
                    labels=c("Nov","Dec","Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Jan"))+
   theme(axis.title.x = element_blank())+

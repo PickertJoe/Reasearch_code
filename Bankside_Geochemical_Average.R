@@ -21,7 +21,7 @@ DOAB<-ggplot(master, aes(x=Month, y=DO, color=Bank, group=Bank
   theme(legend.position = 'bottom')+
   theme(plot.title = element_text(hjust=0.5))+
   theme(axis.title.x = element_blank())+
-  labs(y="Dissolved Oxygen (%)")+
+  labs(y="Dissolved Oxygen (ppm)")+
   ggtitle("Mean Bankside DO Values")
 
 #Plots the mean monthly specific conductivity values by bankside
