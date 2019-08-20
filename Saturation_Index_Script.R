@@ -88,7 +88,61 @@ si_bankside<- ggarrange(AragBA, Co2BA, CalciteBA, DolBA,
 ####BEGIN SYSTEM-WIDE CODE BLOCK########
 ########################################
 
+AragA<-ggplot(master, aes(x=Month, y=Aragonite, color=Bank, group=Bank 
+))+ 
+  theme_bw()+
+  stat_summary(fun.y = mean, geom="line",color="red",size=1, aes(group=1))+
+  stat_summary(fun.data = mean_se, geom="pointrange", color='red', aes(group=1))+
+  scale_x_discrete(breaks=c("Nov '17","Dec '17","Jan '18","Feb '18","Mar '18", "Apr '18", "May '18", "Jun '18", "Jul '18", "Aug '18", "Sep '18", "Jan '19"),
+                   labels=c("Nov","Dec","Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Jan"))+
+  theme(legend.position = 'bottom')+
+  theme(plot.title = element_text(hjust=0.5))+
+  theme(axis.title.x = element_blank())+
+  labs(y="Aragonite Saturation Index")+
+  ggtitle("Average Aragonite Saturation Indices")
 
+CalciteA<-ggplot(master, aes(x=Month, y=Calcite, color=Bank, group=Bank 
+))+ 
+  theme_bw()+
+  stat_summary(fun.y = mean, geom="line",color="red",size=1, aes(group=1))+
+  stat_summary(fun.data = mean_se, geom="pointrange", color='red', aes(group=1))+
+  scale_x_discrete(breaks=c("Nov '17","Dec '17","Jan '18","Feb '18","Mar '18", "Apr '18", "May '18", "Jun '18", "Jul '18", "Aug '18", "Sep '18", "Jan '19"),
+                   labels=c("Nov","Dec","Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Jan"))+
+  theme(legend.position = 'bottom')+
+  theme(plot.title = element_text(hjust=0.5))+
+  theme(axis.title.x = element_blank())+
+  labs(y="Calcite Saturation Index")+
+  ggtitle("Average Calcite Saturation Indices")
+
+Co2A<-ggplot(master, aes(x=Month, y=CO2, color=Bank, group=Bank 
+))+ 
+  theme_bw()+
+  stat_summary(fun.y = mean, geom="line",color="red",size=1, aes(group=1))+
+  stat_summary(fun.data = mean_se, geom="pointrange", color='red', aes(group=1))+
+  scale_x_discrete(breaks=c("Nov '17","Dec '17","Jan '18","Feb '18","Mar '18", "Apr '18", "May '18", "Jun '18", "Jul '18", "Aug '18", "Sep '18", "Jan '19"),
+                   labels=c("Nov","Dec","Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Jan"))+
+  theme(legend.position = 'bottom')+
+  theme(plot.title = element_text(hjust=0.5))+
+  theme(axis.title.x = element_blank())+
+  labs(y="log-CO2 Saturation Index")+
+  ggtitle("Average CO2 Saturation Indices")
+
+DolA<-ggplot(master, aes(x=Month, y=Dolomite, color=Bank, group=Bank 
+))+ 
+  theme_bw()+
+  stat_summary(fun.y = mean, geom="line",color="red",size=1, aes(group=1))+
+  stat_summary(fun.data = mean_se, geom="pointrange", color='red', aes(group=1))+
+  scale_x_discrete(breaks=c("Nov '17","Dec '17","Jan '18","Feb '18","Mar '18", "Apr '18", "May '18", "Jun '18", "Jul '18", "Aug '18", "Sep '18", "Jan '19"),
+                   labels=c("Nov","Dec","Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Jan"))+
+  theme(legend.position = 'bottom')+
+  theme(plot.title = element_text(hjust=0.5))+
+  theme(axis.title.x = element_blank())+
+  labs(y="Dolomite Saturation Index")+
+  ggtitle("Average Dolomite Saturation Indices")
+
+si_average<- ggarrange(AragA, Co2A, CalciteA, DolA, 
+                       common.legend = TRUE, legend="bottom",
+                       ncol=2, nrow=2)
 
 ########################################
 ####END SYSTEM-WIDE CODE BLOCK##########
@@ -112,7 +166,7 @@ Arag<-ggplot(master, aes(x=Month, y=Aragonite, color=Bank, group=Bank
   theme(axis.title.x = element_blank())+
   labs(y="Aragonite Saturation Index", shape="Well Number")+
   scale_shape_manual(values=c(0,1,2,5,0,1,2,5))+
-  ggtitle("Bankside Aragonite Saturation Indices")
+  ggtitle("Aragonite Saturation Indices")
 
 Calcite<-ggplot(master, aes(x=Month, y=Calcite, color=Bank, group=Bank 
 ))+ 
@@ -128,7 +182,7 @@ Calcite<-ggplot(master, aes(x=Month, y=Calcite, color=Bank, group=Bank
   theme(axis.title.x = element_blank())+
   labs(y="Calcite Saturation Index", shape="Well Number")+
   scale_shape_manual(values=c(0,1,2,5,0,1,2,5))+
-  ggtitle("Bankside Calcite Saturation Indices")
+  ggtitle("Calcite Saturation Indices")
 
 Co2<-ggplot(master, aes(x=Month, y=CO2, color=Bank, group=Bank 
 ))+ 
@@ -144,7 +198,7 @@ Co2<-ggplot(master, aes(x=Month, y=CO2, color=Bank, group=Bank
   theme(axis.title.x = element_blank())+
   labs(y="log-CO2 Saturation Index", shape="Well Number")+
   scale_shape_manual(values=c(0,1,2,5,0,1,2,5))+
-  ggtitle("Bankside CO2 Saturation Indices")
+  ggtitle("CO2 Saturation Indices")
 
 Dol<-ggplot(master, aes(x=Month, y=Dolomite, color=Bank, group=Bank 
 ))+ 
@@ -160,7 +214,7 @@ Dol<-ggplot(master, aes(x=Month, y=Dolomite, color=Bank, group=Bank
   theme(axis.title.x = element_blank())+
   labs(y="Dolomite Saturation Index", shape="Well Number")+
   scale_shape_manual(values=c(0,1,2,5,0,1,2,5))+
-  ggtitle("Bankside Dolomite Saturation Indices")
+  ggtitle("Dolomite Saturation Indices")
 
 si_summary<- ggarrange(Arag, Co2, Calcite, Dol, 
                        common.legend = TRUE, legend="bottom",
