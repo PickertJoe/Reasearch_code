@@ -13,7 +13,8 @@ setwd("~/Desktop/R_Scripts/Data")
 master <- read.csv("MasterData.csv")
 
 #Creating a new, separate data frame to hold mean values by month and bank
-means <-aggregate(master, by=list(master$Month, master$Bank), FUN = mean_sd(master), na.rm=TRUE, na.action = NULL)
+means <-aggregate(master, by=list(master$Month, master$Bank), 
+                  FUN = mean_sd(master), na.rm=TRUE, na.action = NULL)
 
 #For whatever reason, this aggregate creates three unecessary columns; remove them
 means[,3:5] <- NULL
