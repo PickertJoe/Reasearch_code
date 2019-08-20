@@ -88,6 +88,8 @@ si_bankside<- ggarrange(AragBA, Co2BA, CalciteBA, DolBA,
 ####BEGIN SYSTEM-WIDE CODE BLOCK########
 ########################################
 
+
+
 ########################################
 ####END SYSTEM-WIDE CODE BLOCK##########
 ########################################
@@ -96,12 +98,89 @@ si_bankside<- ggarrange(AragBA, Co2BA, CalciteBA, DolBA,
 ####BEGIN INDIVIDUAL CODE BLOCK#########
 ########################################
 
+Arag<-ggplot(master, aes(x=Month, y=Aragonite, color=Bank, group=Bank 
+))+ 
+  theme_bw()+
+  geom_point(aes(shape=Well))+
+  geom_line(size=.5)+
+  scale_color_manual(values = c(Ag="black",
+                                Pr="blue"))+
+  scale_x_discrete(breaks=c("Nov '17","Dec '17","Jan '18","Feb '18","Mar '18", "Apr '18", "May '18", "Jun '18", "Jul '18", "Aug '18", "Sep '18", "Jan '19"),
+                   labels=c("Nov","Dec","Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Jan"))+
+  theme(legend.position = 'bottom')+
+  theme(plot.title = element_text(hjust=0.5))+
+  theme(axis.title.x = element_blank())+
+  labs(y="Aragonite Saturation Index", shape="Well Number")+
+  scale_shape_manual(values=c(0,1,2,5,0,1,2,5))+
+  ggtitle("Bankside Aragonite Saturation Indices")
+
+Calcite<-ggplot(master, aes(x=Month, y=Calcite, color=Bank, group=Bank 
+))+ 
+  theme_bw()+
+  geom_point(aes(shape=Well))+
+  geom_line(size=.5)+
+  scale_color_manual(values = c(Ag="black",
+                                Pr="blue"))+
+  scale_x_discrete(breaks=c("Nov '17","Dec '17","Jan '18","Feb '18","Mar '18", "Apr '18", "May '18", "Jun '18", "Jul '18", "Aug '18", "Sep '18", "Jan '19"),
+                   labels=c("Nov","Dec","Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Jan"))+
+  theme(legend.position = 'bottom')+
+  theme(plot.title = element_text(hjust=0.5))+
+  theme(axis.title.x = element_blank())+
+  labs(y="Calcite Saturation Index", shape="Well Number")+
+  scale_shape_manual(values=c(0,1,2,5,0,1,2,5))+
+  ggtitle("Bankside Calcite Saturation Indices")
+
+Co2<-ggplot(master, aes(x=Month, y=CO2, color=Bank, group=Bank 
+))+ 
+  theme_bw()+
+  geom_point(aes(shape=Well))+
+  geom_line(size=.5)+
+  scale_color_manual(values = c(Ag="black",
+                                Pr="blue"))+
+  scale_x_discrete(breaks=c("Nov '17","Dec '17","Jan '18","Feb '18","Mar '18", "Apr '18", "May '18", "Jun '18", "Jul '18", "Aug '18", "Sep '18", "Jan '19"),
+                   labels=c("Nov","Dec","Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Jan"))+
+  theme(legend.position = 'bottom')+
+  theme(plot.title = element_text(hjust=0.5))+
+  theme(axis.title.x = element_blank())+
+  labs(y="log-CO2 Saturation Index", shape="Well Number")+
+  scale_shape_manual(values=c(0,1,2,5,0,1,2,5))+
+  ggtitle("Bankside CO2 Saturation Indices")
+
+Dol<-ggplot(master, aes(x=Month, y=Dolomite, color=Bank, group=Bank 
+))+ 
+  theme_bw()+
+  geom_point(aes(shape=Well))+
+  geom_line(size=.5)+
+  scale_color_manual(values = c(Ag="black",
+                                Pr="blue"))+
+  scale_x_discrete(breaks=c("Nov '17","Dec '17","Jan '18","Feb '18","Mar '18", "Apr '18", "May '18", "Jun '18", "Jul '18", "Aug '18", "Sep '18", "Jan '19"),
+                   labels=c("Nov","Dec","Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Jan"))+
+  theme(legend.position = 'bottom')+
+  theme(plot.title = element_text(hjust=0.5))+
+  theme(axis.title.x = element_blank())+
+  labs(y="Dolomite Saturation Index", shape="Well Number")+
+  scale_shape_manual(values=c(0,1,2,5,0,1,2,5))+
+  ggtitle("Bankside Dolomite Saturation Indices")
+
+si_summary<- ggarrange(Arag, Co2, Calcite, Dol, 
+                       common.legend = TRUE, legend="bottom",
+                       ncol=2, nrow=2)
+
 ########################################
 ####END INDIVIDUAL CODE BLOCK###########
 ########################################
 
 # This section of code prints each of the figure arrays to pdf files
 setwd("~/Desktop/R_Scripts/Figures")
+
 pdf("SI_Bankside.pdf")
 print(si_bankside)
+dev.off()
+
+pdf("SI_Summary.pdf")
+print(si_summary)
+dev.off()
+
+pdf("SI_Average.pdf")
+print(si_average)
 dev.off()
