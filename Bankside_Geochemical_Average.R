@@ -6,7 +6,7 @@ library(cowplot)
 
 setwd("~/Desktop/R_Scripts/Data")
 master <- read.csv("MasterData.csv")
-master$Month = factor(master$Month, levels=c("Nov","Dec","Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"))
+master$Month = factor(master$Month, levels=c("Nov '17","Dec '17","Jan '18","Feb '18","Mar '18", "Apr '18", "May '18", "Jun '18", "Jul '18", "Aug '18", "Sep '18", "Jan '19"))
 
 #Plots the mean monthly dissolved oxygen values by bankside
 DOAB<-ggplot(master, aes(x=Month, y=DO, color=Bank, group=Bank 
@@ -19,7 +19,7 @@ DOAB<-ggplot(master, aes(x=Month, y=DO, color=Bank, group=Bank
   theme(legend.position = 'bottom')+
   theme(plot.title = element_text(hjust=0.5))+
   theme(axis.title.x = element_blank())+
-  labs(y="Dissolved OxygMonth")+
+  labs(y="Dissolved Oxygen (%)")+
   ggtitle("Mean Bankside DO Values")
 
 #Plots the mean monthly specific conductivity values by bankside
@@ -75,7 +75,7 @@ AlkAB<-ggplot(master, aes(x=Month, y=Alkalinity, color=Bank, group=Bank
   theme(legend.position = 'bottom')+
   theme(plot.title = element_text(hjust=0.5))+
   theme(axis.title.x = element_blank())+
-  labs(y="[HCO3] (mg/L)")+
+  labs(y="[CaCO3] (mg/L)")+
   ggtitle("Mean Bankside Alkalinity")
 
 #Plots the mean monthly nitrate values by bankside

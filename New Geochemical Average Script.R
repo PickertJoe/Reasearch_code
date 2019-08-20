@@ -5,7 +5,7 @@ library(cowplot)
 
 setwd("~/Desktop/R_Scripts/Data")
 master <- read.csv("MasterData.csv")
-master$Month = factor(master$Month, levels=c("Nov","Dec","Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"))
+master$Month = factor(master$Month, levels=c("Nov '17","Dec '17","Jan '18","Feb '18","Mar '18", "Apr '18", "May '18", "Jun '18", "Jul '18", "Aug '18", "Sep '18", "Jan '19"))
 wellname <- c("Well1","Well2","Well3","Well4","Well5","Well6","Well7","Well8")
 
 #Plots the monthly mean(+sd) concentrations of Dissolved Oxygen
