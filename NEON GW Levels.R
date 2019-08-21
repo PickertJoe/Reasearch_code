@@ -150,6 +150,30 @@ GW<- ggplot(WLA.long, aes(x=factor(Date_Time), y=value, group=variable, color=li
   annotate("point", x='2018-01-08', y=322.6, color='red', size=3)
 print(GW)
 
+#Creating GW elevation plots by bankside
+AgGW <- ggplot(subset(WLA.long, variable %in% c("Well1", "Well4", "Well6", "Well7")))+
+  geom_line(aes(factor(Date_Time), value, group=variable, color=variable), size=1)+
+  theme_bw()+
+  labs(y="Water Level Elevation(m)", color="Well Number")+
+  ggtitle("Agricultural Bank GW Levels")+
+  theme(legend.position = 'bottom')+
+  theme(axis.title.x = element_blank())+
+  theme(plot.title = element_text(hjust=0.5))+
+  scale_x_discrete(breaks=c('2016-09-01', '2017-01-01', '2017-07-01', '2018-01-01', '2018-07-01', '2019-01-01'),
+                   labels=c("2016-09", "2017-01", "2017-07", "2018-01", "2018-07", "2019-01"))
+
+PrGW <- ggplot(subset(WLA.long, variable %in% c("Well2", "Well3", "Well5", "Well8")))+
+  geom_line(aes(factor(Date_Time), value, group=variable, color=variable), size=1)+
+  theme_bw()+
+  labs(y="Water Level Elevation(m)", color="Well Number")+
+  ggtitle("Prairie Bank GW Levels")+
+  theme(legend.position = 'bottom')+
+  theme(axis.title.x = element_blank())+
+  theme(plot.title = element_text(hjust=0.5))+
+  scale_x_discrete(breaks=c('2016-09-01', '2017-01-01', '2017-07-01', '2018-01-01', '2018-07-01', '2019-01-01'),
+                   labels=c("2016-09", "2017-01", "2017-07", "2018-01", "2018-07", "2019-01"))
+
+
 #This portion of code reads in stream flow data and adds to plot of GW
 
 setwd("~/Desktop/R_Scripts/Data/")
@@ -189,8 +213,16 @@ Stream <-ggarrange(P, SW, GW,
                   ncol=1, nrow=3,
                   legend='bottom')
 
+GW_Bankside <-ggarrange(AgGW, PrGW,
+                        ncol=1, nrow=2,
+                        legend='bottom')
+
 #Saving the figure array as a pdf
 setwd("~/Desktop/R_Scripts/Figures")
 pdf("HydroGraph.pdf")
 print(Stream)
+dev.off()
+
+pdf("GW_Levels_Bankside.pdf")
+print(GW_Bankside)
 dev.off()

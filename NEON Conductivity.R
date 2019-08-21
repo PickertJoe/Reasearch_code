@@ -126,6 +126,7 @@ CBank<- ggplot(COND.long, aes(x=factor(Date_Time), y=value, group=list2, color=l
   labs(y="Conductivity(us/cm)", color="Bank Side")+
   ggtitle("NEON Well Water Conductivity")+
   theme(plot.title = element_text(hjust=0.5))+
+  ylim(600,750)+
   theme(legend.position = 'bottom')+
   scale_color_manual(values = c(Ag="black",
                                 Pr="blue"))+
@@ -136,27 +137,29 @@ CBank<- ggplot(COND.long, aes(x=factor(Date_Time), y=value, group=list2, color=l
 #Plotting just the agricultural bank
 AgC <- ggplot(subset(COND.long, variable %in% c("Well1", "Well4", "Well6", "Well7")))+
   geom_line(aes(factor(Date_Time), value, group=variable, color=variable), size=1)+
-    theme_bw()+
-    labs(y="Conductivity(us/cm)", color="Well Number")+
-    ggtitle("Agricultural Bank Conductivity")+
-    theme(legend.position = 'bottom')+
-    theme(axis.title.x = element_blank())+
-    theme(plot.title = element_text(hjust=0.5))+
-    scale_x_discrete(breaks=c('2016-09-01', '2017-01-01', '2017-07-01', '2018-01-01', '2018-07-01', '2019-01-01'),
-                     labels=c("2016-09", "2017-01", "2017-07", "2018-01", "2018-07", "2019-01"))
+  theme_bw()+
+  labs(y="Conductivity(us/cm)", color="Well Number")+
+  ggtitle("Agricultural Bank Conductivity")+
+  ylim(550,800)+
+  theme(legend.position = 'bottom')+
+  theme(axis.title.x = element_blank())+
+  theme(plot.title = element_text(hjust=0.5))+
+  scale_x_discrete(breaks=c('2016-09-01', '2017-01-01', '2017-07-01', '2018-01-01', '2018-07-01', '2019-01-01'),
+                   labels=c("2016-09", "2017-01", "2017-07", "2018-01", "2018-07", "2019-01"))
 print(AgC)
 
 #Plotting just the prairie bank
 PrC <- ggplot(subset(COND.long, variable %in% c("Well2", "Well3", "Well5", "Well8")))+
   geom_line(aes(factor(Date_Time), value, group=variable, color=variable), size=1)+
-    theme_bw()+
-    labs(x="Date", y="Conductivity(us/cm)", color="Well Number")+
-    ggtitle("Prairie Bank Conductivity")+
-    theme(legend.position = 'bottom')+
-    theme(axis.title.x = element_blank())+
-    theme(plot.title = element_text(hjust=0.5))+
-    scale_x_discrete(breaks=c('2016-09-01', '2017-01-01', '2017-07-01', '2018-01-01', '2018-07-01', '2019-01-01'),
-                     labels=c("2016-09", "2017-01", "2017-07", "2018-01", "2018-07", "2019-01"))
+  theme_bw()+
+  labs(x="Date", y="Conductivity(us/cm)", color="Well Number")+
+  ggtitle("Prairie Bank Conductivity")+
+  ylim(550,800)+
+  theme(legend.position = 'bottom')+
+  theme(axis.title.x = element_blank())+
+  theme(plot.title = element_text(hjust=0.5))+
+  scale_x_discrete(breaks=c('2016-09-01', '2017-01-01', '2017-07-01', '2018-01-01', '2018-07-01', '2019-01-01'),
+                   labels=c("2016-09", "2017-01", "2017-07", "2018-01", "2018-07", "2019-01"))
 
 print(PrC)
 
@@ -194,3 +197,22 @@ GW_COND <- ggarrange(GW, CBank,
 pdf("Combined_GW_Conductivity.pdf")
 print(GW_COND)
 dev.off()
+
+#This section of code will create an array to compare the NEON GW elevations
+#To the NEON conductivity values by inidividual wells by bankside
+#This will require you to run the NEON GW Levels.R script first
+
+Ag_GW_COND <- ggarrange(AgGW, AgC,
+                        ncol=1, nrow = 2,
+                        legend='bottom')
+
+Pr_GW_COND <- ggarrange(PrGW, PrC,
+                        ncol=1, nrow=2,
+                        legend='bottom')
+
+pdf("Ag_GW_COND.pdf")
+print(Ag_GW_COND)
+dev.off()
+
+pdf("Pr_GW_COND.pdf")
+print(Pr_GW_Con)
