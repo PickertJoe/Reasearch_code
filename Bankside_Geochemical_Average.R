@@ -8,6 +8,15 @@ setwd("~/Desktop/R_Scripts/Data")
 master <- read.csv("MasterData.csv")
 master$Month = factor(master$Month, levels=c("Nov '17","Dec '17","Jan '18","Feb '18","Mar '18", "Apr '18", "May '18", "Jun '18", "Jul '18", "Aug '18", "Sep '18", "Jan '19"))
 
+#This custom function is used to calculate the mean & se log values for pH
+f1 <- function(x){
+  log10(mean(10^x))
+}
+
+f2 <- function(x){
+  log10(mean_se(10^x))
+}
+
 #Plots the mean monthly dissolved oxygen values by bankside
 DOAB<-ggplot(master, aes(x=Month, y=DO, color=Bank, group=Bank 
 ))+ 
@@ -60,8 +69,8 @@ TempAB<-ggplot(master, aes(x=Month, y=Temperature, color=Bank, group=Bank
 pHAB<-ggplot(master, aes(x=Month, y=pH, color=Bank, group=Bank 
 ))+ 
   theme_bw()+
-  stat_summary(fun.y = mean, geom="line",size=1)+
-  stat_summary(fun.data = mean_se, geom="pointrange")+
+  stat_summary(fun.y = f1, geom="line",size=1)+
+  stat_summary(fun.data = f2, geom="pointrange")+
   scale_color_manual(values = c(Ag="black",
                                 Pr="blue"))+
   scale_x_discrete(breaks=c("Nov '17","Dec '17","Jan '18","Feb '18","Mar '18", "Apr '18", "May '18", "Jun '18", "Jul '18", "Aug '18", "Sep '18", "Jan '19"),

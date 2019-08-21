@@ -8,6 +8,15 @@ master <- read.csv("MasterData.csv")
 master$Month = factor(master$Month, levels=c("Nov '17","Dec '17","Jan '18","Feb '18","Mar '18", "Apr '18", "May '18", "Jun '18", "Jul '18", "Aug '18", "Sep '18", "Jan '19"))
 wellname <- c("Well1","Well2","Well3","Well4","Well5","Well6","Well7","Well8")
 
+#This custom function is used to calculate the mean & se log values for pH
+f1 <- function(x){
+  log10(mean(10^x))
+}
+
+f2 <- function(x){
+  log10(mean_se(10^x))
+}
+
 #Plots the monthly mean(+sd) concentrations of Dissolved Oxygen
 DOA<-ggplot(master, aes(x=master$Month, y=master$DO 
   ))+ 
@@ -78,8 +87,8 @@ TempA<-ggplot(master, aes(x=master$Month, y=master$Temperature
 pHA<-ggplot(master, aes(x=master$Month, y=master$pH 
 ))+ 
   theme_bw()+
-  stat_summary(fun.y = mean, geom="line",color="red",size=1, aes(group=1))+
-  stat_summary(fun.data = mean_se, geom="ribbon",fill="black", color="black")+
+  stat_summary(fun.y = f1, geom="line",color="red",size=1, aes(group=1))+
+  stat_summary(fun.data = f2, geom="ribbon",fill="black", color="black")+
   labs(y="Well Water pH")+
   scale_x_discrete(breaks=c("Nov '17","Dec '17","Jan '18","Feb '18","Mar '18", "Apr '18", "May '18", "Jun '18", "Jul '18", "Aug '18", "Sep '18", "Jan '19"),
                    labels=c("Nov","Dec","Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Jan"))+
