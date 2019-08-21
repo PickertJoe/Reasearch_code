@@ -111,7 +111,7 @@ NO3AB<-ggplot(master, aes(x=Month, y=NO3, color=Bank, group=Bank
   theme(plot.title = element_text(hjust=0.5))+
   theme(axis.title.x = element_blank())+
   labs(y="[NO3-N] (mg/L)")+
-  annotate("text", x=3, y=0.2, label="Detection limit= 0.02")+
+  annotate("text", x=3, y=0.2, label="Detection= 0.02")+
   annotate("segment", x=1, y=0, xend=12, yend=0)+
   ggtitle("Mean Bankside NO3 Values")
 
@@ -224,6 +224,10 @@ fieldpar_bankside<- ggarrange(DOAB, pHAB, SPCAB, TempAB,
                              common.legend = TRUE, legend="bottom",
                              ncol=2, nrow=2)
 
+microbe_bankside <- ggarrange(NO3AB, pHAB, DOAB, KAB,
+                              common.legend=TRUE, legend='bottom',
+                              ncol=1, nrow=4)
+
 #These lines will save pdfs of the figure arrays
 setwd("~/Desktop/R_Scripts/Figures")
 pdf("Anion_Bankside.pdf")
@@ -236,4 +240,8 @@ dev.off()
 
 pdf("Parameter_Bankside.pdf")
 print(fieldpar_bankside)
+dev.off()
+
+pdf("Microbial_Activity.pdf")
+print(microbe_bankside)
 dev.off()
