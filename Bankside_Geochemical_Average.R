@@ -102,6 +102,8 @@ NO3AB<-ggplot(master, aes(x=Month, y=NO3, color=Bank, group=Bank
   theme(plot.title = element_text(hjust=0.5))+
   theme(axis.title.x = element_blank())+
   labs(y="[NO3-N] (mg/L)")+
+  annotate("text", x=3, y=0.2, label="Detection limit= 0.02")+
+  annotate("segment", x=1, y=0, xend=12, yend=0)+
   ggtitle("Mean Bankside NO3 Values")
 
 #Plots the mean monthly sulfate values by bankside
