@@ -20,15 +20,23 @@ colnames(MeanStudy) = c("Month", "Mean", "SE")
 TempG <- ggplot() + 
   
   labs(y="Mean Daily temperature (C)", x="Month")+
-  geom_line(data=MeanT, aes(x=factor(Month), y=MeanT), color='blue', size=1.3, group=1)+
-  geom_ribbon(data=MeanT, aes(x=factor(Month), ymin=MeanT-SeT, ymax=MeanT+SeT), fill='cyan', alpha=0.3, group=1)+
-  geom_point(data=MeanStudy, aes(x=factor(Month), y=Mean), color='red', size=2.5)+
-  geom_errorbar(data=MeanStudy, aes(x=factor(Month), ymin=Mean-SE, ymax=Mean+SE), color='red')+
+  geom_line(data=MeanT, aes(x=factor(Month), y=MeanT, color='red'), size=1.3, group=1)+
+  geom_ribbon(data=MeanT, aes(x=factor(Month), ymin=MeanT-SeT, ymax=MeanT+SeT, fill='red'), alpha=0.3, group=1)+
+  geom_point(data=MeanStudy, aes(x=factor(Month), y=Mean, color='blue'), size=2.5)+
+  geom_errorbar(data=MeanStudy, aes(x=factor(Month), ymin=Mean-SE, ymax=Mean+SE, color='cyan'))+
 
   scale_x_discrete(breaks=c('1','2','3','4','5','6','7','8','9','10','11','12'),
                    labels=c("Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"))+
+  #scale_color_discrete()+
   theme(plot.title = element_text(hjust=0.5))+
-  ggtitle("Mean Daily Temperatures for Study Period")+
+  ggtitle("Mean Temperatures for Study Period vs Climatic Average")+
   theme_bw()
 
 print(TempG)
+
+
+setwd("~/Desktop/R_Scripts/Figures")
+pdf("Study_Temperature.pdf")
+print(TempG)
+dev.off()
+
