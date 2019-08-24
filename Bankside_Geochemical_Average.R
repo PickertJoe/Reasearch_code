@@ -183,7 +183,7 @@ NaAB<-ggplot(master, aes(x=Month, y=Na, color=Bank, group=Bank
 MgAB<-ggplot(master, aes(x=Month, y=Mg, color=Bank, group=Bank 
 ))+ 
   theme_bw()+
-  stat_summary(fun.y = mean, geom="line",size=1, na.rm = TRUE)+
+  stat_summary(fun.y = mean, geom="line",size=1, na.rm = FALSE)+
   stat_summary(fun.data = mean_se, geom="pointrange")+
   scale_color_manual(values = c(Ag="black",
                                 Pr="blue"))+
