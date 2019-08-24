@@ -215,4 +215,5 @@ print(Ag_GW_COND)
 dev.off()
 
 pdf("Pr_GW_COND.pdf")
-print(Pr_GW_Con)
+print(Pr_GW_COND)
+dev.off()
