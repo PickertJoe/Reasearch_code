@@ -5,6 +5,7 @@
 library(ggplot2)
 library(dplyr)
 library(lubridate)
+library(tibbletime)
 
 setwd("~/Desktop/R_Scripts/Data/")
 QP <- read.csv("KonzaQP.csv")
@@ -16,16 +17,15 @@ WaterYear = QP[396:760, 1:3]
 # Removing streamflow data
 WaterYear[2] = NULL
 
-WaterYear <- transform(WaterYear,month=as.numeric(format(as.Date(Date),"%m")))
-
-WYAgg <- aggregate(. ~month,
-                     data=WaterYear,FUN=sum)
-WYAgg[2] = NULL
-
+WYAgg = WaterYear %>%
+    mutate(month = format(Date, "%m")) %>%
+    group_by(month) %>%
+    summarise(total = sum(Precipitation))
 # Reordering months by occurrence in water year
 WYAgg$month <- WYAgg[c(10,11,12,1,2,3,4,5,6,7,8,9), ]
-WYAgg$month <- factor(WYAgg$month, levels=c("Oct","Nov","Dec","Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"))
+WYAgg[2] = NULL
 
 
-setwd("~/Dropbox/EVRN 624 Files/Data/Rcodes/Data")
-SPrecip <- read.csv("Precipagg.csv")
+
+#setwd("~/Dropbox/EVRN 624 Files/Data/Rcodes/Data")
+#SPrecip <- read.csv("Precipagg.csv")
