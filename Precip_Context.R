@@ -21,9 +21,9 @@ WYAgg = WaterYear %>%
     mutate(month = format(Date, "%m")) %>%
     group_by(month) %>%
     summarise(total = sum(Precipitation))
-# Reordering months by occurrence in water year
-WYAgg$month <- WYAgg[c(10,11,12,1,2,3,4,5,6,7,8,9), ]
-WYAgg[2] = NULL
+
+WYAgg$month = as.numeric(WYAgg$month)
+WYAgg$month = month.abb[WYAgg$month]
 
 
 
