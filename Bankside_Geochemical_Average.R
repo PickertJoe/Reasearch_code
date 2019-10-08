@@ -4,7 +4,7 @@ library(ggplot2)
 library(ggpubr)
 library(cowplot)
 
-setwd("~/Desktop/R_Scripts/Data")
+setwd("R_Scripts/Data")
 master <- read.csv("MasterData.csv")
 master$Month = factor(master$Month, levels=c("Nov '17","Dec '17","Jan '18","Feb '18","Mar '18", "Apr '18", "May '18", "Jun '18", "Jul '18", "Aug '18", "Sep '18", "Jan '19"))
 
@@ -199,6 +199,8 @@ MgAB<-ggplot(master, aes(x=Month, y=Mg, color=Bank, group=Bank
 KAB<-ggplot(master, aes(x=Month, y=K, color=Bank, group=Bank 
 ))+ 
   theme_bw()+
+  ggtitle("Mean Bankside K Values")+
+  theme(plot.title = element_text(hjust=0.5))+
   stat_summary(fun.y = mean, geom="line",size=1, na.rm=FALSE)+
   stat_summary(fun.data = mean_se, geom="pointrange")+
   scale_color_manual(values = c(Ag="black",
@@ -206,10 +208,9 @@ KAB<-ggplot(master, aes(x=Month, y=K, color=Bank, group=Bank
   scale_x_discrete(breaks=c("Nov '17","Dec '17","Jan '18","Feb '18","Mar '18", "Apr '18", "May '18", "Jun '18", "Jul '18", "Aug '18", "Sep '18", "Jan '19"),
                    labels=c("Nov","Dec","Jan","Feb","Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Jan"))
   theme(legend.position = 'bottom')+
-  theme(plot.title = element_text(hjust=0.5))+
   theme(axis.title.x = element_blank())+
-  labs(y="[K] (mg/L)")+
-  ggtitle("Mean Bankside K Values")
+  labs(y="[K] (mg/L)")
+  
 
 #Creating figure arrays from the above figures
 anion_bankside<- ggarrange(NO3AB, SO4AB, ClAB, AlkAB, 
@@ -229,7 +230,7 @@ microbe_bankside <- ggarrange(NO3AB, pHAB, DOAB, KAB,
                               ncol=1, nrow=4)
 
 #These lines will save pdfs of the figure arrays
-setwd("~/Desktop/R_Scripts/Figures")
+setwd("~/R_Scripts/Figures")
 pdf("Anion_Bankside.pdf")
 print(anion_bankside)
 dev.off()
