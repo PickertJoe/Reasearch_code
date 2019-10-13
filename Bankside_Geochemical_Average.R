@@ -4,7 +4,7 @@ library(ggplot2)
 library(ggpubr)
 library(cowplot)
 
-setwd("R_Scripts/Data")
+setwd("~/R_Scripts/Data")
 master <- read.csv("MasterData.csv")
 master$Month = factor(master$Month, levels=c("Nov '17","Dec '17","Jan '18","Feb '18","Mar '18", "Apr '18", "May '18", "Jun '18", "Jul '18", "Aug '18", "Sep '18", "Jan '19"))
 

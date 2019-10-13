@@ -3,9 +3,10 @@ library(ggplot2)
 library(dplyr)
 library(reshape)
 library(ggpubr)
+library(RColorBrewer)
 
 
-setwd("~/Desktop/R_Scripts/Data/GWData/Raw/NEON_elev-groundwater/5_min_data")
+setwd("~/R_Scripts/Data/GWData/Raw/NEON_elev-groundwater/5_min_data")
 
 ##**** SUPER IMPORTANT the headers in all the fils need to be the same for this to work 
 files1 = list.files(pattern=c(".301.","*.csv")) # hear what we are doing is make a list that contains all CSV files 
@@ -124,16 +125,19 @@ WLA.long<- cbind(WLA.long, list2)
 #Use these lines to plot a section of groundwater data just for sampling period
 #newTotal<- newTotal[-c(1:422),]
 
+# Creating unique color palletes for groundwater graph
+mypal1 = colorRampPalette(brewer.pal(4, "Blues"))
+mypal2 = colorRampPalette(brewer.pal(4, "Reds"))
+
 GW<- ggplot(WLA.long, aes(x=factor(Date_Time), y=value, group=variable, color=list2))+
-  geom_line(aes(y= value,linetype=WLA.long$variable), size=1)+
+  geom_line(aes(y= value,color = interaction(list2, variable)), size=1)+
   theme_bw()+
-  labs(y="Water Level Elevations(m)", color="Bank Side", linetype="Well Number", legend.position='bottom')+
+  labs(y="Water Level Elevations(m)", color="Well Number + Bankside", legend.position='bottom')+
   ggtitle("NEON Well Water Elevations")+
   theme(legend.position = 'bottom')+
   theme(plot.title = element_text(hjust=0.5))+
   theme(axis.title.x = element_blank())+
-  scale_color_manual(values = c(Ag="black",
-                                Pr="blue"))+
+  scale_color_manual(values = c(mypal1(4), mypal2(4)))+
   scale_x_discrete(breaks=c('2016-09-01', '2017-01-01', '2017-07-01', '2018-01-01', '2018-07-01', '2019-01-01'),
                      labels=c("2016-09", "2017-01", "2017-07", "2018-01", "2018-07", "2019-01"))+
   #Adding annotation points to designate sampling dates
@@ -176,7 +180,7 @@ PrGW <- ggplot(subset(WLA.long, variable %in% c("Well2", "Well3", "Well5", "Well
 
 #This portion of code reads in stream flow data and adds to plot of GW
 
-setwd("~/Desktop/R_Scripts/Data/")
+setwd("~/R_Scripts/Data/")
 QP <- read.csv("KonzaQP.csv")
 #Converting streamflow from cfs to m3/s
 QP$Streamflow <- QP$Streamflow * .028316846592
@@ -218,7 +222,7 @@ GW_Bankside <-ggarrange(AgGW, PrGW,
                         legend='bottom')
 
 #Saving the figure array as a pdf
-setwd("~/Desktop/R_Scripts/Figures")
+setwd("~/R_Scripts/Figures")
 pdf("HydroGraph.pdf")
 print(Stream)
 dev.off()
