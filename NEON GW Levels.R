@@ -3,7 +3,6 @@ library(ggplot2)
 library(dplyr)
 library(reshape)
 library(ggpubr)
-library(RColorBrewer)
 
 
 setwd("~/R_Scripts/Data/GWData/Raw/NEON_elev-groundwater/5_min_data")
@@ -125,19 +124,15 @@ WLA.long<- cbind(WLA.long, list2)
 #Use these lines to plot a section of groundwater data just for sampling period
 #newTotal<- newTotal[-c(1:422),]
 
-# Creating unique color palletes for groundwater graph
-mypal1 = colorRampPalette(brewer.pal(4, "Blues"))
-mypal2 = colorRampPalette(brewer.pal(4, "Reds"))
-
 GW<- ggplot(WLA.long, aes(x=factor(Date_Time), y=value, group=variable, color=list2))+
-  geom_line(aes(y= value,color = interaction(list2, variable)), size=1)+
+  geom_line(aes(y= value,color = variable), size=1)+
   theme_bw()+
   labs(y="Water Level Elevations(m)", color="Well Number + Bankside", legend.position='bottom')+
   ggtitle("NEON Well Water Elevations")+
   theme(legend.position = 'bottom')+
   theme(plot.title = element_text(hjust=0.5))+
   theme(axis.title.x = element_blank())+
-  scale_color_manual(values = c(mypal1(4), mypal2(4)))+
+  scale_color_manual(values = c("#003300", "#0033FF", "#00FFFF", "#669933", "#0099FF", "#CCFF00", "#99FF99", "#000099"))+
   scale_x_discrete(breaks=c('2016-09-01', '2017-01-01', '2017-07-01', '2018-01-01', '2018-07-01', '2019-01-01'),
                      labels=c("2016-09", "2017-01", "2017-07", "2018-01", "2018-07", "2019-01"))+
   #Adding annotation points to designate sampling dates
