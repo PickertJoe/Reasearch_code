@@ -7,16 +7,18 @@ Lower <- SPrecip$MPrecip - SPrecip$SE
 Upper <- SPrecip$MPrecip + SPrecip$SE
 
 PrecipG <- ggplot(data=SPrecip, aes(x=SPrecip$Month, y=SPrecip$MPrecip, group=1)) + 
-
-  labs(y="Precipitation (mm)", x="Month")+
-  geom_ribbon(aes(x=SPrecip$Month, ymin=Lower, ymax=Upper),fill="forestgreen", alpha=0.9) +
-  geom_line(aes( y =SPrecip$MPrecip), color="black")+
-  geom_point(stat="identity", aes(y=SPrecip$APrecip), color="blue", size=3)+
+  geom_errorbar(aes(x=SPrecip$Month, ymin=Lower, ymax=Upper,color="red"), alpha=0.9) +
+  geom_line(aes(y =SPrecip$MPrecip, color="red"), size = 1)+
+  geom_point(stat="identity", aes(y=SPrecip$APrecip, color="blue"), size=3)+
   ggtitle("Mean vs Observed Precipitation (WYs 2017 & 2018)")+
+  scale_x_discrete(breaks=c("Oct '16","Jan '17","Apr '17","Jul '17","Oct '17", "Jan '18", "Apr '18", "Jul '18", "Sep '18"),
+                   labels=c("Oct","Jan '17","Apr","Jul","Oct", "Jan '18", "Apr", "Jul", "Sep"))+
+  scale_color_manual(values = c("blue", "red"),
+                     labels = c("Observed Precpitation", "Mean Precipitation ± SD"))+
+  theme_bw()+
   theme(plot.title = element_text(hjust=0.5))+
-  scale_fill_manual(values=c("forest green", "navy"),
-                    labels=c("Mean Precipitation", "Observed Precipitation"))+
-  theme_bw()
+  labs(y="Precipitation (mm)", x="Month", colour="Series")+
+  theme(legend.position = 'bottom')
 
 PrecipG
 
