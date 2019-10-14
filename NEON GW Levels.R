@@ -127,7 +127,7 @@ WLA.long<- cbind(WLA.long, list2)
 GW<- ggplot(WLA.long, aes(x=factor(Date_Time), y=value, group=variable, color=list2))+
   geom_line(aes(y= value,color = variable), size=1)+
   theme_bw()+
-  labs(y="Water Level Elevations(m)", color="Well Number + Bankside", legend.position='bottom')+
+  labs(y="Water Level Elevations(m)", color="Well Number", legend.position='bottom')+
   ggtitle("NEON Well Water Elevations")+
   theme(legend.position = 'bottom')+
   theme(plot.title = element_text(hjust=0.5))+
