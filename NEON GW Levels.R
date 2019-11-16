@@ -217,7 +217,7 @@ GW_Bankside <-ggarrange(AgGW, PrGW,
                         legend='bottom')
 
 #Saving the figure array as a pdf
-setwd("~/R_Scripts/Figures")
+setwd("~/R_Scripts/Figures/")
 pdf("HydroGraph.pdf")
 print(Stream)
 dev.off()

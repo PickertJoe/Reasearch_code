@@ -36,7 +36,7 @@ TempG <- ggplot() +
 print(TempG)
 
 
-setwd("~/R_Scripts/Figures")
+setwd("~/R_Scripts/Figures/")
 pdf("Study_Temperature.pdf")
 print(TempG)
 dev.off()

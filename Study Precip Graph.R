@@ -22,7 +22,7 @@ PrecipG <- ggplot(data=SPrecip, aes(x=SPrecip$Month, y=SPrecip$MPrecip, group=1)
 
 PrecipG
 
-setwd("~/R_Scripts/Figures")
+setwd("~/R_Scripts/Figures/")
 pdf("Study_Precip.pdf")
 print(PrecipG)
 dev.off()
