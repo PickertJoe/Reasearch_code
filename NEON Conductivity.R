@@ -2,7 +2,7 @@ library(data.table)
 library(ggplot2)
 library(dplyr)
 
-setwd("~/Desktop/R_Scripts/Data/GWData/Raw/NEON_cond-groundwater/5_min_data")
+setwd("~/R_Scripts/Data/GWData/Raw/NEON_cond-groundwater/5_min_data")
 
 ##**** SUPER IMPORTANT the headers in all the fils need to be the same for this to work 
 files1 = list.files(pattern=c(".301.","*.csv")) # hear what we are doing is make a list that contains all CSV files 
@@ -168,7 +168,7 @@ BankConductivity <-ggarrange(AgC, PrC,
                    legend='bottom')
 
 
-setwd("~/Desktop/R_Scripts/Figures/")
+setwd("~/R_Scripts/Figures/")
 
 #Plotting all conductivity data
 pdf("NEON_Total_Conductivity.pdf")

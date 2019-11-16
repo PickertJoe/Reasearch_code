@@ -2,7 +2,7 @@ library(ggplot2)
 library(dplyr)
 library(reshape)
 library(chron)
-setwd("~/Desktop/R_Scripts/Data/")
+setwd("~//R_Scripts/Data/")
 
 
 #This first part of this code isolates the mean monthly temperatures
@@ -36,7 +36,7 @@ TempG <- ggplot() +
 print(TempG)
 
 
-setwd("~/Desktop/R_Scripts/Figures")
+setwd("~/R_Scripts/Figures")
 pdf("Study_Temperature.pdf")
 print(TempG)
 dev.off()
