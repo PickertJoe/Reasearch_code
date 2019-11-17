@@ -31,7 +31,7 @@ DOAB<-ggplot(master, aes(x=Month, y=DO, color=Bank, group=Bank
   theme(plot.title = element_text(hjust=0.5))+
   theme(axis.title.x = element_blank())+
   labs(y="Dissolved Oxygen (ppm)")+
-  ggtitle("Mean Bankside DO Values")
+  ggtitle("A")
 
 #Plots the mean monthly specific conductivity values by bankside
 SPCAB<-ggplot(master, aes(x=Month, y=Conductivity, color=Bank, group=Bank 
@@ -47,7 +47,7 @@ SPCAB<-ggplot(master, aes(x=Month, y=Conductivity, color=Bank, group=Bank
   theme(plot.title = element_text(hjust=0.5))+
   theme(axis.title.x = element_blank())+
   labs(y="Specific Conductivity(us/cm)")+
-  ggtitle("Mean Bankside SPC Values")
+  ggtitle("C")
 
 #Plots the mean monthly water temperature values by bankside
 TempAB<-ggplot(master, aes(x=Month, y=Temperature, color=Bank, group=Bank 
@@ -63,7 +63,7 @@ TempAB<-ggplot(master, aes(x=Month, y=Temperature, color=Bank, group=Bank
   theme(plot.title = element_text(hjust=0.5))+
   theme(axis.title.x = element_blank())+
   labs(y="Water Temperature (C)")+
-  ggtitle("Mean Bankside Water Temperature")
+  ggtitle("D")
 
 #Plots the mean monthly pH values by bankside
 pHAB<-ggplot(master, aes(x=Month, y=pH, color=Bank, group=Bank 
@@ -79,7 +79,7 @@ pHAB<-ggplot(master, aes(x=Month, y=pH, color=Bank, group=Bank
   theme(plot.title = element_text(hjust=0.5))+
   theme(axis.title.x = element_blank())+
   labs(y="pH Values")+
-  ggtitle("Mean Bankside pH Values")
+  ggtitle("B")
 
 #Plots the mean monthly alkalinity values by bankside
 AlkAB<-ggplot(master, aes(x=Month, y=Alkalinity, color=Bank, group=Bank 
@@ -95,7 +95,7 @@ AlkAB<-ggplot(master, aes(x=Month, y=Alkalinity, color=Bank, group=Bank
   theme(plot.title = element_text(hjust=0.5))+
   theme(axis.title.x = element_blank())+
   labs(y="[CaCO3] (mg/L)")+
-  ggtitle("Mean Bankside Alkalinity")
+  ggtitle("D")
 
 #Plots the mean monthly nitrate values by bankside
 NO3AB<-ggplot(master, aes(x=Month, y=NO3, color=Bank, group=Bank 
@@ -113,7 +113,7 @@ NO3AB<-ggplot(master, aes(x=Month, y=NO3, color=Bank, group=Bank
   labs(y="[NO3-N] (mg/L)")+
   annotate("text", x=3, y=0.2, label="Detection= 0.02")+
   annotate("segment", x=1, y=0, xend=12, yend=0)+
-  ggtitle("Mean Bankside NO3 Values")
+  ggtitle("A")
 
 #Plots the mean monthly sulfate values by bankside
 SO4AB<-ggplot(master, aes(x=Month, y=SO4, color=Bank, group=Bank 
@@ -129,7 +129,7 @@ SO4AB<-ggplot(master, aes(x=Month, y=SO4, color=Bank, group=Bank
   theme(plot.title = element_text(hjust=0.5))+
   theme(axis.title.x = element_blank())+
   labs(y="[SO4] (mg/L)")+
-  ggtitle("Mean Bankside SO4 Values")
+  ggtitle("B")
 
 #Plots the mean monthly chloride values by bankside
 ClAB<-ggplot(master, aes(x=Month, y=Cl, color=Bank, group=Bank 
@@ -145,7 +145,7 @@ ClAB<-ggplot(master, aes(x=Month, y=Cl, color=Bank, group=Bank
   theme(plot.title = element_text(hjust=0.5))+
   theme(axis.title.x = element_blank())+
   labs(y="[Cl] (mg/L)")+
-  ggtitle("Mean Bankside Cl Values")
+  ggtitle("C")
 
 #Plots the mean monthly calcium values by bankside
 CaAB<-ggplot(master, aes(x=Month, y=Ca, color=Bank, group=Bank 
@@ -161,7 +161,7 @@ CaAB<-ggplot(master, aes(x=Month, y=Ca, color=Bank, group=Bank
   theme(plot.title = element_text(hjust=0.5))+
   theme(axis.title.x = element_blank())+
   labs(y="[Ca] (mg/L)")+
-  ggtitle("Mean Bankside Ca Values")
+  ggtitle("A")
 
 #Plots the mean monthly sodium values by bankside
 NaAB<-ggplot(master, aes(x=Month, y=Na, color=Bank, group=Bank 
@@ -177,7 +177,7 @@ NaAB<-ggplot(master, aes(x=Month, y=Na, color=Bank, group=Bank
   theme(plot.title = element_text(hjust=0.5))+
   theme(axis.title.x = element_blank())+
   labs(y="[Na] (mg/L)")+
-  ggtitle("Mean Bankside Na Values")
+  ggtitle("D")
 
 #Plots the mean monthly magnesium values by bankside
 MgAB<-ggplot(master, aes(x=Month, y=Mg, color=Bank, group=Bank 
@@ -193,13 +193,13 @@ MgAB<-ggplot(master, aes(x=Month, y=Mg, color=Bank, group=Bank
   theme(plot.title = element_text(hjust=0.5))+
   theme(axis.title.x = element_blank())+
   labs(y="[Mg] (mg/L)")+
-  ggtitle("Mean Bankside Mg Values")
+  ggtitle("C")
 
 #Plots the mean monthly potassium values by bankside
 KAB<-ggplot(master, aes(x=Month, y=K, color=Bank, group=Bank 
 ))+ 
   theme_bw()+
-  ggtitle("Mean Bankside K Values")+
+  ggtitle("B")+
   theme(plot.title = element_text(hjust=0.5))+
   stat_summary(fun.y = mean, geom="line",size=1, na.rm=FALSE)+
   stat_summary(fun.data = mean_se, geom="pointrange")+
