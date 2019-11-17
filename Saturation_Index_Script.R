@@ -28,7 +28,7 @@ AragBA<-ggplot(master, aes(x=Month, y=Aragonite, color=Bank, group=Bank
   theme(plot.title = element_text(hjust=0.5))+
   theme(axis.title.x = element_blank())+
   labs(y="Aragonite Saturation Index")+
-  ggtitle("Bankside Aragonite Saturation Indices")
+  ggtitle("A")
 
 CalciteBA<-ggplot(master, aes(x=Month, y=Calcite, color=Bank, group=Bank 
 ))+ 
@@ -43,7 +43,7 @@ CalciteBA<-ggplot(master, aes(x=Month, y=Calcite, color=Bank, group=Bank
   theme(plot.title = element_text(hjust=0.5))+
   theme(axis.title.x = element_blank())+
   labs(y="Calcite Saturation Index")+
-  ggtitle("Bankside Calcite Saturation Indices")
+  ggtitle("C")
 
 Co2BA<-ggplot(master, aes(x=Month, y=CO2, color=Bank, group=Bank 
 ))+ 
@@ -58,7 +58,7 @@ Co2BA<-ggplot(master, aes(x=Month, y=CO2, color=Bank, group=Bank
   theme(plot.title = element_text(hjust=0.5))+
   theme(axis.title.x = element_blank())+
   labs(y="log-CO2 Saturation Index")+
-  ggtitle("Bankside CO2 Saturation Indices")
+  ggtitle("D")
 
 DolBA<-ggplot(master, aes(x=Month, y=Dolomite, color=Bank, group=Bank 
 ))+ 
@@ -73,9 +73,9 @@ DolBA<-ggplot(master, aes(x=Month, y=Dolomite, color=Bank, group=Bank
   theme(plot.title = element_text(hjust=0.5))+
   theme(axis.title.x = element_blank())+
   labs(y="Dolomite Saturation Index")+
-  ggtitle("Bankside Dolomite Saturation Indices")
+  ggtitle("B")
 
-si_bankside<- ggarrange(AragBA, Co2BA, CalciteBA, DolBA, 
+si_bankside<- ggarrange(AragBA, DolBA, CalciteBA, Co2BA, 
                            common.legend = TRUE, legend="bottom",
                            ncol=2, nrow=2)
 
