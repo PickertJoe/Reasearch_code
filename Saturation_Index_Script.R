@@ -99,7 +99,7 @@ AragA<-ggplot(master, aes(x=Month, y=Aragonite, color=Bank, group=Bank
   theme(plot.title = element_text(hjust=0.5))+
   theme(axis.title.x = element_blank())+
   labs(y="Aragonite Saturation Index")+
-  ggtitle("Average Aragonite Saturation Indices")
+  ggtitle("A")
 
 CalciteA<-ggplot(master, aes(x=Month, y=Calcite, color=Bank, group=Bank 
 ))+ 
@@ -112,7 +112,7 @@ CalciteA<-ggplot(master, aes(x=Month, y=Calcite, color=Bank, group=Bank
   theme(plot.title = element_text(hjust=0.5))+
   theme(axis.title.x = element_blank())+
   labs(y="Calcite Saturation Index")+
-  ggtitle("Average Calcite Saturation Indices")
+  ggtitle("C")
 
 Co2A<-ggplot(master, aes(x=Month, y=CO2, color=Bank, group=Bank 
 ))+ 
@@ -125,7 +125,7 @@ Co2A<-ggplot(master, aes(x=Month, y=CO2, color=Bank, group=Bank
   theme(plot.title = element_text(hjust=0.5))+
   theme(axis.title.x = element_blank())+
   labs(y="log-CO2 Saturation Index")+
-  ggtitle("Average CO2 Saturation Indices")
+  ggtitle("D")
 
 DolA<-ggplot(master, aes(x=Month, y=Dolomite, color=Bank, group=Bank 
 ))+ 
@@ -138,9 +138,9 @@ DolA<-ggplot(master, aes(x=Month, y=Dolomite, color=Bank, group=Bank
   theme(plot.title = element_text(hjust=0.5))+
   theme(axis.title.x = element_blank())+
   labs(y="Dolomite Saturation Index")+
-  ggtitle("Average Dolomite Saturation Indices")
+  ggtitle("B")
 
-si_average<- ggarrange(AragA, Co2A, CalciteA, DolA, 
+si_average<- ggarrange(AragA, DolA, CalciteA, Co2A, 
                        common.legend = TRUE, legend="bottom",
                        ncol=2, nrow=2)
 
