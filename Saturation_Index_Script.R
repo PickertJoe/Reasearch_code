@@ -6,7 +6,7 @@ library(ggplot2)
 library(ggpubr)
 library(cowplot)
 
-setwd("~/Desktop/R_Scripts/Data")
+setwd("~/R_Scripts/Data")
 master <- read.csv("MasterData.csv")
 master$Month = factor(master$Month, levels=c("Nov '17","Dec '17","Jan '18","Feb '18","Mar '18", "Apr '18", "May '18", "Jun '18", "Jul '18", "Aug '18", "Sep '18", "Jan '19"))
 
@@ -225,7 +225,7 @@ si_summary<- ggarrange(Arag, Co2, Calcite, Dol,
 ########################################
 
 # This section of code prints each of the figure arrays to pdf files
-setwd("~/Desktop/R_Scripts/Figures")
+setwd("~/R_Scripts/Figures/")
 
 pdf("SI_Bankside.pdf")
 print(si_bankside)
