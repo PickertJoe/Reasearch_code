@@ -123,7 +123,7 @@ C<- ggplot(COND.long, aes(x=Date_Time, y=value, group=variable, color=list2))+
 #Plots whole data set averaged by bankside
 CBank<- ggplot(COND.long, aes(x=factor(Date_Time), y=value, group=list2, color=list2))+
   stat_summary(fun.y = mean, geom="line",size=1)+
-  stat_summary(fun.data = mean_se, geom="errorbar")+
+  stat_summary(fun.data = mean_se, geom="errorbar", alpha=0.2)+
   theme_bw()+
   labs(y="Conductivity(us/cm)", color="Bank Side")+
   ggtitle("NEON Well Water Conductivity")+
